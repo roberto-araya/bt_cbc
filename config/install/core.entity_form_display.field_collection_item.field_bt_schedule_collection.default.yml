@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.field_collection_item.field_bt_schedule_collection.field_bt_tag
+    - field.field.field_collection_item.field_bt_schedule_collection.field_bt_days_hours_collection
+    - field_collection.field_collection.field_bt_schedule_collection
+  module:
+    - field_collection
+    - workbench_moderation
+id: field_collection_item.field_bt_schedule_collection.default
+targetEntityType: field_collection_item
+bundle: field_bt_schedule_collection
+mode: default
+content:
+  field_bt_tag:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_days_hours_collection:
+    type: field_collection_embed
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

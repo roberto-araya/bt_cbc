@@ -1,0 +1,9 @@
+name: Btester Custom Blocks Content
+type: module
+description: ''
+core: 8.x
+dependencies:
+  - icon_select_field
+  - telephone
+version: 8.x-1.0
+package: Btester

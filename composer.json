@@ -17,5 +17,5 @@
     "issues": "https://www.drupal.org/project/issues/bt_cbc",
     "source": "http://git.drupal.org/project/bt_cbc.git"
   },
-  "require": {  }
+  "require": {}
 }

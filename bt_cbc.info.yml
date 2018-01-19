@@ -3,6 +3,6 @@ type: module
 description: 'This modules add block content types to be used in page composition'
 core: 8.x
 dependencies:
-  - icon_select_field:icon_select_field
+  - WondrousLLC:icon_select_field
   - drupal:telephone
 package: Btester

@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.field_collection_item.field_bt_img
     - field_collection.field_collection.field_bt_blq_txt_img_collection
-    - media_entity.bundle.image
+    - media.type.image
 id: field_collection_item.field_bt_blq_txt_img_collection.field_bt_img
 field_name: field_bt_img
 entity_type: field_collection_item

@@ -14,7 +14,6 @@ dependencies:
     - inline_entity_form
     - link
     - text
-    - workbench_moderation
 id: field_collection_item.field_bt_blq_txt_img_collection.default
 targetEntityType: field_collection_item
 bundle: field_bt_blq_txt_img_collection

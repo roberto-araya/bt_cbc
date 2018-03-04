@@ -15,7 +15,6 @@ dependencies:
     - icon_select_field
     - link
     - text
-    - workbench_moderation
 third_party_settings:
   field_group:
     group_block:

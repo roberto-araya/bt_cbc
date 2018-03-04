@@ -9,7 +9,6 @@ dependencies:
     - address
     - field_states_ui
     - maxlength
-    - workbench_moderation
 id: field_collection_item.field_bt_address_collection.default
 targetEntityType: field_collection_item
 bundle: field_bt_address_collection

@@ -7,7 +7,6 @@ dependencies:
     - field.field.block_content.bt_cb_text_media.field_bt_blq_title
   module:
     - field_group
-    - workbench_moderation
 third_party_settings:
   field_group:
     group_block:

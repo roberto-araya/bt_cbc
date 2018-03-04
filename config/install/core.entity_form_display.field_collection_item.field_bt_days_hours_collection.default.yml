@@ -5,8 +5,6 @@ dependencies:
     - field.field.field_collection_item.field_bt_days_hours_collection.field_bt_days
     - field.field.field_collection_item.field_bt_days_hours_collection.field_bt_hours
     - field_collection.field_collection.field_bt_days_hours_collection
-  module:
-    - workbench_moderation
 id: field_collection_item.field_bt_days_hours_collection.default
 targetEntityType: field_collection_item
 bundle: field_bt_days_hours_collection

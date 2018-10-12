@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.field_collection_item.field_bt_img
     - field_collection.field_collection.field_bt_blq_txt_img_collection
-    - media.type.image
+    - media.type.bt_image
 id: field_collection_item.field_bt_blq_txt_img_collection.field_bt_img
 field_name: field_bt_img
 entity_type: field_collection_item
@@ -19,7 +19,7 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      image: image
+      bt_image: bt_image
     sort:
       field: _none
     auto_create: false

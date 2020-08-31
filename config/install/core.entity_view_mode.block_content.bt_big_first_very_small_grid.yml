@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.bt_big_first_very_small_grid
+label: 'Big First Very Small Grid'
+targetEntityType: block_content
+cache: true

@@ -1,0 +1,103 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_image
+    - core.entity_form_mode.media.bt_inline_form
+    - field.field.block_content.bt_image.field_bt_add_image
+    - field.field.block_content.bt_image.field_bt_blq_desc
+    - field.field.block_content.bt_image.field_bt_blq_title
+  module:
+    - field_group
+    - inline_entity_form
+third_party_settings:
+  field_group:
+    group_content:
+      children:
+        - field_bt_add_image
+      parent_name: ''
+      weight: 2
+      label: Content
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: block-content-group-field
+        formatter: closed
+        description: 'Create a new image to show in this block or select one from your multimedia library.'
+        required_fields: true
+      region: content
+    group_block:
+      children:
+        - info
+        - field_bt_blq_desc
+        - field_bt_blq_title
+      parent_name: ''
+      weight: 1
+      label: Block
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: block-block-group-field
+        formatter: closed
+        description: 'Write a description to identificate this block.'
+        required_fields: true
+      region: content
+id: block_content.bt_image.default
+targetEntityType: block_content
+bundle: bt_image
+mode: default
+content:
+  field_bt_add_image:
+    weight: 22
+    settings:
+      form_mode: bt_inline_form
+      override_labels: true
+      label_singular: Image
+      label_plural: Images
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      revision: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  field_bt_blq_desc:
+    weight: 22
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_bt_blq_title:
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  info:
+    type: string_textfield
+    weight: 21
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  translation:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

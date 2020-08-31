@@ -4,7 +4,7 @@
   "description": "",
   "keywords": ["Drupal"],
   "homepage": "https://www.drupal.org/project/bt_cbc",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Roberto Araya",
@@ -17,5 +17,8 @@
     "issues": "https://www.drupal.org/project/issues/bt_cbc",
     "source": "http://git.drupal.org/project/bt_cbc.git"
   },
-  "require": {}
+  "require": {
+    "drupal/bt_image": "dev-1.x",
+    "drupal/button_link": "~1.2"
+  }
 }

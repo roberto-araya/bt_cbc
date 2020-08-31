@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - core.entity_view_mode.block_content.bt_border
+    - field.field.block_content.basic.body
+    - field.field.block_content.basic.field_bt_blq_desc
+    - field.field.block_content.basic.field_bt_blq_title
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: block_content.basic.bt_border
+targetEntityType: block_content
+bundle: basic
+mode: bt_border
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true
+  langcode: true
+

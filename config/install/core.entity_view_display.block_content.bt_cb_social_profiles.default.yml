@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_social_profiles
+    - field.field.block_content.bt_cb_social_profiles.field_bt_blq_desc
+    - field.field.block_content.bt_cb_social_profiles.field_bt_blq_title
+    - field.field.block_content.bt_cb_social_profiles.field_bt_link_facebook
+    - field.field.block_content.bt_cb_social_profiles.field_bt_link_google_plus
+    - field.field.block_content.bt_cb_social_profiles.field_bt_link_instagram
+    - field.field.block_content.bt_cb_social_profiles.field_bt_link_linkedin
+    - field.field.block_content.bt_cb_social_profiles.field_bt_link_twitter
+  module:
+    - link
+id: block_content.bt_cb_social_profiles.default
+targetEntityType: block_content
+bundle: bt_cb_social_profiles
+mode: default
+content:
+  field_bt_link_facebook:
+    type: link
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_bt_link_google_plus:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_bt_link_instagram:
+    type: link
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_bt_link_linkedin:
+    type: link
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_bt_link_twitter:
+    type: link
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true
+  langcode: true

@@ -14,7 +14,6 @@ third_party_settings:
   field_group:
     group_block:
       children:
-        - langcode
         - info
         - field_bt_blq_desc
         - field_bt_blq_title

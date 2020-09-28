@@ -46,7 +46,7 @@ bundle: bt_cb_map
 mode: default
 content:
   field_bt_blq_desc:
-    weight: 3
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -65,7 +65,7 @@ content:
     type: google_map_field_default
     region: content
   field_bt_blq_title:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''

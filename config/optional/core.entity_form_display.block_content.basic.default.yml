@@ -2,11 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.bt_cb_text_media
-    - field.field.block_content.bt_cb_text_media.field_bt_blq_desc
-    - field.field.block_content.bt_cb_text_media.field_bt_blq_title
+    - block_content.type.basic
+    - field.field.block_content.basic.body
+    - field.field.block_content.basic.field_bt_blq_desc
+    - field.field.block_content.basic.field_bt_blq_title
   module:
     - field_group
+    - text
 third_party_settings:
   field_group:
     group_block:
@@ -17,52 +19,70 @@ third_party_settings:
       parent_name: ''
       weight: 1
       format_type: fieldset
+      region: content
       format_settings:
         id: ''
         classes: ''
         description: ''
-        required_fields: false
+        required_fields: true
       label: Block
+    group_content:
+      children:
+        - body
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
       region: content
-id: block_content.bt_cb_text_media.default
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Content
+id: block_content.basic.default
 targetEntityType: block_content
-bundle: bt_cb_text_media
+bundle: basic
 mode: default
 content:
-  field_bt_blq_desc:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_bt_blq_title:
+  body:
+    type: text_textarea_with_summary
     weight: 3
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_bt_blq_desc:
+    type: string_textfield
+    weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_bt_blq_title:
     type: string_textfield
+    weight: 3
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   info:
     type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   langcode:
     type: language_select
     weight: 0
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  translation:
-    weight: 2
-    region: content
-    settings: {  }
     third_party_settings: {  }
 hidden: {  }

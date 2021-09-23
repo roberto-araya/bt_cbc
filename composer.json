@@ -18,7 +18,7 @@
     "source": "http://git.drupal.org/project/bt_cbc.git"
   },
   "require": {
-    "drupal/bt_image": "dev-1.x",
+    "drupal/bt_image": "^1.0-alpha1",
     "drupal/button_link": "~1.2"
   }
 }

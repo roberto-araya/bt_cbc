@@ -20,5 +20,12 @@
   "require": {
     "drupal/bt_image": "^2.0.0-alpha1",
     "drupal/button_link": "~1.2"
+  },
+  "extra": {
+    "patches": {
+      "drupal/core": {
+        "Support third party settings for components within a section": "https://www.drupal.org/files/issues/2021-12-13/3015152-tps-9.3.x-128.patch"
+      }
+    } 
   }
 }

@@ -4,3 +4,223 @@
  * @file
  * A description of what your module does.
  */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_layout_builder_configure_block_alter().
+ */
+function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInterface $form_state, $form_id) {
+    /** @var \Drupal\layout_builder\SectionComponent $section_component */
+    $section_component = $form_state->getFormObject()->getCurrentComponent();
+    // We need to add the submit before save to ensure TPS to be saved.
+    array_unshift($form['#submit'], 'bt_cbc_form_layout_builder_configure_block_submit');
+
+    $form['settings']['block_background_color'] = [
+      '#type' => 'select',
+      '#title' => t('Background color'),
+      '#options' => _get_theme_colors_options('bg'),
+      '#description' => t("Block's background color"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_background_color'),
+    ];
+
+    $form['settings']['block_title_color'] = [
+      '#type' => 'select',
+      '#title' => t('Title color'),
+      '#options' => _get_theme_colors_options('txt'),
+      '#description' => t("Block's title color"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_title_color'),
+    ];
+
+    $form['settings']['block_text_color'] = [
+      '#type' => 'select',
+      '#title' => t('Text color'),
+      '#options' => _get_theme_colors_options('txt'),
+      '#description' => t("Block's text color"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_text_color'),
+    ];
+
+    $form['settings']['block_text_align'] = [
+      '#type' => 'select',
+      '#title' => t('Text align'),
+      '#options' => [
+        'txt-left' => 'Left',
+        'txt-center' => 'Center',
+        'txt-right' => 'Right',
+      ],
+      '#description' => t("Block's text align"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_text_align'),
+    ];
+
+    $form['settings']['block_padding_left'] = [
+      '#type' => 'select',
+      '#title' => t('Padding left'),
+      '#options' => _get_padding_options('pl'),
+      '#description' => t("Block's padding left"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_left'),
+    ]; 
+
+    $form['settings']['block_padding_top'] = [
+      '#type' => 'select',
+      '#title' => t('Padding top'),
+      '#options' => _get_padding_options('pt'),
+      '#description' => t("Block's padding top"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_top'),
+    ];
+
+    $form['settings']['block_padding_right'] = [
+      '#type' => 'select',
+      '#title' => t('Padding right'),
+      '#options' => _get_padding_options('pr'),
+      '#description' => t("Block's padding right"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_right'),
+    ];
+
+    $form['settings']['block_padding_bottom'] = [
+      '#type' => 'select',
+      '#title' => t('Padding bottom'),
+      '#options' => _get_padding_options('pb'),
+      '#description' => t("Block's padding bottom"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_bottom'),
+    ];
+
+    $form['settings']['block_align'] = [
+      '#type' => 'select',
+      '#title' => t('Block align'),
+      '#options' => [
+        'align-stretch' => 'Stretch',
+        'align-start' => 'Start',
+        'align-center' => 'Center',
+        'align-end' => 'End',
+      ],
+      '#description' => t("Block's align"),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_align'),
+    ];
+
+    $form['settings']['block_custom_classes'] = [
+      '#type' => 'textfield',
+      '#title' => t('CSS class(es)'),
+      '#description' => t('Customize the styling of this block by adding CSS classes. Separate multiple classes by spaces.'),
+      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_custom_classes'),
+    ];
+}
+
+/**
+ * Layout builder configure block submit.
+ */
+function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInterface $form_state) {
+  /** @var \Drupal\layout_builder\SectionComponent $section_component */
+  $section_component = $form_state->getFormObject()->getCurrentComponent();
+  if ($classes = $form_state->getValue(['settings', 'block_custom_classes'])) {
+    $section_component->setThirdPartySetting('block_style', 'block_custom_classes', $classes);
+  }
+  else {
+    $section_component->unsetThirdPartySetting('block_style', 'block_custom_classes');
+  }
+
+  $styles = [
+    'block_background_color',
+    'block_title_color',
+    'block_text_color',
+    'block_text_align',
+    'block_padding_left',
+    'block_padding_top',
+    'block_padding_right',
+    'block_padding_bottom',
+    'block_align',
+  ];
+
+  foreach ($styles as $style) {
+    if ($component_style = $form_state->getValue(['settings', $style])) {
+      $section_component->setThirdPartySetting('block_style', $style, $component_style);
+    }
+    else {
+      $section_component->unsetThirdPartySetting('block_style', $style);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bt_cbc_preprocess_layout(&$variables) {
+  $layout = $variables['layout'] ?? NULL;
+  if ($regions = $layout->getRegionNames()) {
+    foreach ($regions as $region_name) {
+      if (isset($variables['content'][$region_name])) {
+        _block_style_layout_builder_add_classes($variables, $region_name);
+      }
+    }
+  }
+}
+
+/**
+ * Helper function for adding classes via layout builder.
+ */
+function _block_style_layout_builder_add_classes(&$variables, $region_name) {
+  foreach ($variables['content'][$region_name] as &$section_component) {
+    if (is_array($section_component) && isset($section_component['#block_style']['block_custom_classes'])) {
+      $classes = explode(' ', $section_component['#block_style']['block_custom_classes']);
+      $existing_classes = $section_component['#attributes']['class'] ?? [];
+      $section_component['#attributes']['class'] = array_merge($existing_classes, $classes);
+    }
+
+    $styles = [
+      'block_background_color',
+      'block_title_color',
+      'block_text_color',
+      'block_text_align',
+      'block_padding_left',
+      'block_padding_top',
+      'block_padding_right',
+      'block_padding_bottom',
+      'block_align',
+    ];
+    $section_component['#configuration']['block_style'] = [];
+    foreach ($styles as $style) {
+      if (is_array($section_component) && isset($section_component['#block_style'][$style])) {
+        $section_component['#configuration']['block_style'][$style] = $section_component['#block_style'][$style];
+      }
+    }
+  }
+}
+
+/*
+ * Return an array of theme color selectors to apply in block styles form.
+ * 
+ * @param string $prefix
+ *  The prefix to build the respective css selector.
+ */
+function _get_theme_colors_options($prefix) :array {
+  return [
+    $prefix . '-primary' => 'Primary',
+    $prefix . '-primary-light' => 'Primary Light',
+    $prefix . '-primary-dark' => 'Primary Dark',
+    $prefix . '-secondary' => 'Secondary',
+    $prefix . '-secondary-light' => 'Secondary Light',
+    $prefix . '-secondary-dark' => 'Secondary Dark',
+    $prefix . '-accent' => 'Accent',
+    $prefix . '-accent-light' => 'Accent Light',
+    $prefix . '-accent-dark' => 'Accent Dark',
+    $prefix . '-background' => 'Background',
+    $prefix . '-white' => 'White',
+    $prefix . '-black' => 'Black',
+    $prefix . '-gray' => 'Gray',
+  ];
+}
+
+/*
+ * Return an array of padding selectors to apply in block styles form.
+ * 
+ * @param string $prefix
+ *  The prefix to build the respective css selector.
+ */
+function _get_padding_options($prefix) :array {
+  return [
+    $prefix . '-none' => 'None',
+    $prefix . '-half' => 'Half',
+    $prefix . '-normal' => 'Normal',
+    $prefix . '-double' => 'Double',
+    $prefix . '-triple' => 'Triple',
+  ];
+}

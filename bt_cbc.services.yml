@@ -1,0 +1,6 @@
+services:
+  bt_cbc.render_block_component_subscriber:
+    class: Drupal\bt_cbc\EventSubscriber\BlockComponentRenderArray
+    arguments: []
+    tags:
+      - { name: event_subscriber }

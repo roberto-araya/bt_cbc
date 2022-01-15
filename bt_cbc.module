@@ -11,98 +11,98 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_layout_builder_configure_block_alter().
  */
 function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInterface $form_state, $form_id) {
-    /** @var \Drupal\layout_builder\SectionComponent $section_component */
-    $section_component = $form_state->getFormObject()->getCurrentComponent();
-    // We need to add the submit before save to ensure TPS to be saved.
-    array_unshift($form['#submit'], 'bt_cbc_form_layout_builder_configure_block_submit');
+  /** @var \Drupal\layout_builder\SectionComponent $section_component */
+  $section_component = $form_state->getFormObject()->getCurrentComponent();
+  // We need to add the submit before save to ensure TPS to be saved.
+  array_unshift($form['#submit'], 'bt_cbc_form_layout_builder_configure_block_submit');
 
-    $form['settings']['block_background_color'] = [
-      '#type' => 'select',
-      '#title' => t('Background color'),
-      '#options' => _get_theme_colors_options('bg'),
-      '#description' => t("Block's background color"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_background_color'),
-    ];
+  $form['settings']['block_background_color'] = [
+    '#type' => 'select',
+    '#title' => t('Background color'),
+    '#options' => _get_theme_colors_options('bg'),
+    '#description' => t("Block's background color"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_background_color'),
+  ];
 
-    $form['settings']['block_title_color'] = [
-      '#type' => 'select',
-      '#title' => t('Title color'),
-      '#options' => _get_theme_colors_options('txt'),
-      '#description' => t("Block's title color"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_title_color'),
-    ];
+  $form['settings']['block_title_color'] = [
+    '#type' => 'select',
+    '#title' => t('Title color'),
+    '#options' => _get_theme_colors_options('txt'),
+    '#description' => t("Block's title color"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_title_color'),
+  ];
 
-    $form['settings']['block_text_color'] = [
-      '#type' => 'select',
-      '#title' => t('Text color'),
-      '#options' => _get_theme_colors_options('txt'),
-      '#description' => t("Block's text color"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_text_color'),
-    ];
+  $form['settings']['block_text_color'] = [
+    '#type' => 'select',
+    '#title' => t('Text color'),
+    '#options' => _get_theme_colors_options('txt'),
+    '#description' => t("Block's text color"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_text_color'),
+  ];
 
-    $form['settings']['block_text_align'] = [
-      '#type' => 'select',
-      '#title' => t('Text align'),
-      '#options' => [
-        'txt-left' => 'Left',
-        'txt-center' => 'Center',
-        'txt-right' => 'Right',
-      ],
-      '#description' => t("Block's text align"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_text_align'),
-    ];
+  $form['settings']['block_text_align'] = [
+    '#type' => 'select',
+    '#title' => t('Text align'),
+    '#options' => [
+      'txt-left' => t('Left'),
+      'txt-center' => t('Center'),
+      'txt-right' => t('Right'),
+    ],
+    '#description' => t("Block's text align"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_text_align'),
+  ];
 
-    $form['settings']['block_padding_left'] = [
-      '#type' => 'select',
-      '#title' => t('Padding left'),
-      '#options' => _get_padding_options('pl'),
-      '#description' => t("Block's padding left"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_left'),
-    ]; 
+  $form['settings']['block_padding_left'] = [
+    '#type' => 'select',
+    '#title' => t('Padding left'),
+    '#options' => _get_padding_options('pl'),
+    '#description' => t("Block's padding left"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_left'),
+  ];
 
-    $form['settings']['block_padding_top'] = [
-      '#type' => 'select',
-      '#title' => t('Padding top'),
-      '#options' => _get_padding_options('pt'),
-      '#description' => t("Block's padding top"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_top'),
-    ];
+  $form['settings']['block_padding_top'] = [
+    '#type' => 'select',
+    '#title' => t('Padding top'),
+    '#options' => _get_padding_options('pt'),
+    '#description' => t("Block's padding top"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_top'),
+  ];
 
-    $form['settings']['block_padding_right'] = [
-      '#type' => 'select',
-      '#title' => t('Padding right'),
-      '#options' => _get_padding_options('pr'),
-      '#description' => t("Block's padding right"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_right'),
-    ];
+  $form['settings']['block_padding_right'] = [
+    '#type' => 'select',
+    '#title' => t('Padding right'),
+    '#options' => _get_padding_options('pr'),
+    '#description' => t("Block's padding right"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_right'),
+  ];
 
-    $form['settings']['block_padding_bottom'] = [
-      '#type' => 'select',
-      '#title' => t('Padding bottom'),
-      '#options' => _get_padding_options('pb'),
-      '#description' => t("Block's padding bottom"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_bottom'),
-    ];
+  $form['settings']['block_padding_bottom'] = [
+    '#type' => 'select',
+    '#title' => t('Padding bottom'),
+    '#options' => _get_padding_options('pb'),
+    '#description' => t("Block's padding bottom"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_padding_bottom'),
+  ];
 
-    $form['settings']['block_align'] = [
-      '#type' => 'select',
-      '#title' => t('Block align'),
-      '#options' => [
-        'align-stretch' => 'Stretch',
-        'align-start' => 'Start',
-        'align-center' => 'Center',
-        'align-end' => 'End',
-      ],
-      '#description' => t("Block's align"),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_align'),
-    ];
+  $form['settings']['block_align'] = [
+    '#type' => 'select',
+    '#title' => t('Block align'),
+    '#options' => [
+      'align-stretch' => t('Stretch'),
+      'align-start' => t('Start'),
+      'align-center' => t('Center'),
+      'align-end' => t('End'),
+    ],
+    '#description' => t("Block's align"),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_align'),
+  ];
 
-    $form['settings']['block_custom_classes'] = [
-      '#type' => 'textfield',
-      '#title' => t('CSS class(es)'),
-      '#description' => t('Customize the styling of this block by adding CSS classes. Separate multiple classes by spaces.'),
-      '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_custom_classes'),
-    ];
+  $form['settings']['block_custom_classes'] = [
+    '#type' => 'textfield',
+    '#title' => t('CSS class(es)'),
+    '#description' => t('Customize the styling of this block by adding CSS classes. Separate multiple classes by spaces.'),
+    '#default_value' => $section_component->getThirdPartySetting('block_style', 'block_custom_classes'),
+  ];
 }
 
 /**
@@ -185,11 +185,11 @@ function _block_style_layout_builder_add_classes(&$variables, $region_name) {
   }
 }
 
-/*
+/**
  * Return an array of theme color selectors to apply in block styles form.
- * 
+ *
  * @param string $prefix
- *  The prefix to build the respective css selector.
+ *   The prefix to build the respective css selector.
  */
 function _get_theme_colors_options($prefix) :array {
   return [
@@ -209,11 +209,11 @@ function _get_theme_colors_options($prefix) :array {
   ];
 }
 
-/*
+/**
  * Return an array of padding selectors to apply in block styles form.
- * 
+ *
  * @param string $prefix
- *  The prefix to build the respective css selector.
+ *   The prefix to build the respective css selector.
  */
 function _get_padding_options($prefix) :array {
   return [

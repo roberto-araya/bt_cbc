@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_hero
+    - field.storage.block_content.field_bt_button_icon
+  module:
+    - svg_icon
+id: block_content.bt_cb_hero.field_bt_button_icon
+field_name: field_bt_button_icon
+entity_type: block_content
+bundle: bt_cb_hero
+label: 'Button Icon'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: svg
+  max_filesize: ''
+  description_field: 0
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: svg_icon

@@ -14,3 +14,10 @@ content:
       field_states_ui:
         form:
           add: Agregar
+  field_bt_paragraph:
+    third_party_settings:
+      field_states_ui:
+        form:
+          add: Agregar
+      maxlength:
+        maxlength_js_label: 'Contenido limitado a @limit caracteres, restantes: <strong>@remaining</strong>'

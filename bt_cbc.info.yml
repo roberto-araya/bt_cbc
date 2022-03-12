@@ -5,6 +5,6 @@ core_version_requirement: ^9.2
 dependencies:
   - drupal:telephone
   - drupal:address
-  - bt_image:bt_image
-  - drupal:button_link
+  - drupal:bt_image
+  - drupal:svg_icon
 package: Btester

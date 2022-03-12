@@ -7,7 +7,7 @@ third_party_settings:
 content:
   field_bt_link_double:
     settings:
-      placeholder_url: 'http://www.jemplo.cl'
+      placeholder_url: 'http://www.ejemplo.cl'
       placeholder_title: 'El texto ingresado aquí enlazará a la dirección ingresada en el campo URL.'
     third_party_settings:
       field_states_ui:

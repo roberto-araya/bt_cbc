@@ -11,4 +11,4 @@ content:
         form:
           add: Agregar
       maxlength:
-        maxlength_js_label: 'Contenido limitado a @limit carácteres, restantes: <strong>@remaining</strong>'
+        maxlength_js_label: 'Contenido limitado a @limit caracteres, restantes: <strong>@remaining</strong>'

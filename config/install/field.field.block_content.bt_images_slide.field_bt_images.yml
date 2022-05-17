@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_images_slide
+    - field.storage.block_content.field_bt_images
+    - media.type.bt_image
+id: block_content.bt_images_slide.field_bt_images
+field_name: field_bt_images
+entity_type: block_content
+bundle: bt_images_slide
+label: Images
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      bt_image: bt_image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

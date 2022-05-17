@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bt_images_slide
+label: 'Images Slide'
+revision: 0
+description: 'Images Slideshow'

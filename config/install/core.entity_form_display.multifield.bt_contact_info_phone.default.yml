@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - bt_core.multifield_type.bt_contact_info_phone
+    - field.field.multifield.bt_contact_info_phone.field_bt_contact_info_phone
+    - field.field.multifield.bt_contact_info_phone.field_bt_contact_info_phone_type
+  module:
+    - telephone
+id: multifield.bt_contact_info_phone.default
+targetEntityType: multifield
+bundle: bt_contact_info_phone
+mode: default
+content:
+  field_bt_contact_info_phone:
+    type: telephone_default
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_contact_info_phone_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  description: true
+  status: true
+  uid: true

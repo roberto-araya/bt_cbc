@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_title_icon
+    - field.field.block_content.bt_cb_title_icon.field_bt_blq_desc
+    - field.field.block_content.bt_cb_title_icon.field_bt_blq_title
+    - field.field.block_content.bt_cb_title_icon.field_bt_content_title
+    - field.field.block_content.bt_cb_title_icon.field_bt_epigrafe
+    - field.field.block_content.bt_cb_title_icon.field_bt_icon
+  module:
+    - svg_icon
+id: block_content.bt_cb_title_icon.default
+targetEntityType: block_content
+bundle: bt_cb_title_icon
+mode: default
+content:
+  field_bt_content_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_bt_epigrafe:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_bt_icon:
+    type: svg_icon_formatter
+    label: hidden
+    settings:
+      use_canvas: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true
+  langcode: true

@@ -70,6 +70,11 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
       'button',
       'button_link',
     ],
+    'bt_cb_title_icon' => [
+      'title',
+      'caption',
+      'icon',
+    ],
     'bt_cb_highlighted_text' => ['highlighted'],
   ];
 

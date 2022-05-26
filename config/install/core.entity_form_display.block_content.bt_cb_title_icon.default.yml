@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_title_icon
+    - field.field.block_content.bt_cb_title_icon.field_bt_blq_desc
+    - field.field.block_content.bt_cb_title_icon.field_bt_blq_title
+    - field.field.block_content.bt_cb_title_icon.field_bt_content_title
+    - field.field.block_content.bt_cb_title_icon.field_bt_epigrafe
+    - field.field.block_content.bt_cb_title_icon.field_bt_icon
+  module:
+    - field_group
+    - svg_icon
+third_party_settings:
+  field_group:
+    group_content:
+      children:
+        - field_bt_content_title
+        - field_bt_epigrafe
+        - field_bt_icon
+      label: Content
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+    group_block_info:
+      children:
+        - info
+        - field_bt_blq_title
+        - field_bt_blq_desc
+      label: 'Block Info'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+id: block_content.bt_cb_title_icon.default
+targetEntityType: block_content
+bundle: bt_cb_title_icon
+mode: default
+content:
+  field_bt_blq_desc:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_blq_title:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_content_title:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_epigrafe:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_icon:
+    type: svg_icon_widget
+    weight: 6
+    region: content
+    settings:
+      progress_indicator: throbber
+      allow_existing: true
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

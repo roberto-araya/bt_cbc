@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bt_cb_title_icon
+label: 'Title Icon Block'
+revision: 0
+description: 'Show a title with an icon.'

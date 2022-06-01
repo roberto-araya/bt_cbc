@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bt_cb_title_image
+label: 'Title Image'
+revision: 0
+description: ''

@@ -86,7 +86,12 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
     'bt_cb_highlighted_text' => ['highlighted'],
   ];
 
-  $other_block_content = ['bt_image', 'bt_cb_map', 'bt_images_gallery', 'bt_images_slide'];
+  $other_block_content = [
+    'bt_image',
+    'bt_cb_map',
+    'bt_images_gallery',
+    'bt_images_slide'
+  ];
 
   if (array_key_exists('block_form', $form['settings'])) {
     $block_content_bundle = $form['settings']['block_form']['#block']->bundle();

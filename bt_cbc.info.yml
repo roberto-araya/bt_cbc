@@ -4,7 +4,7 @@ description: 'This modules add block content types to be used in page compositio
 core_version_requirement: ^9.2
 dependencies:
   - drupal:telephone
-  - drupal:address
-  - drupal:bt_image
-  - drupal:svg_icon
+  - address:address
+  - bt_image:bt_image
+  - svg_icon:svg_icon
 package: Btester

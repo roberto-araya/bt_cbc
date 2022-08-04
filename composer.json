@@ -25,7 +25,7 @@
   "extra": {
     "patches": {
       "drupal/core": {
-        "Support third party settings for components within a section": "https://www.drupal.org/files/issues/2021-12-13/3015152-tps-9.3.x-128.patch"
+        "Support third party settings for components within a section": "https://www.drupal.org/files/issues/2022-04-27/3015152-147.patch"
       }
     } 
   }

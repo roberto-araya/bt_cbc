@@ -119,7 +119,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
 
       $form['settings']['block_style']['background_color']['background_color_select'] = [
         '#type' => 'select',
-        '#options' => _get_theme_color_options(),
+        '#options' => bt_cbc_get_theme_color_options(),
         '#title' => t('Theme Color'),
         '#description' => t("Select a theme color as background."),
         '#default_value' => $section_component->getThirdPartySetting('block_style', 'background_color_select'),
@@ -140,7 +140,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
       // Add specific color settings configurations.
       if (!in_array($block_content_bundle, $other_block_content)) {
         foreach ($block_content[$block_content_bundle] as $setting) {
-          $form = _get_color_form_settings($form, $section_component, $setting);
+          $form = bt_cbc_get_color_form_settings($form, $section_component, $setting);
         }
       }
 
@@ -168,7 +168,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         $form['settings']['block_style']['padding'][$prefix]['padding_left'] = [
           '#type' => 'select',
           '#title' => t('Padding left'),
-          '#options' => _get_size_options(),
+          '#options' => bt_cbc_get_size_options(),
           '#description' => t("Block's padding left"),
           '#default_value' => $section_component->getThirdPartySetting('block_style', $prefix . '_padding_left'),
         ];
@@ -176,7 +176,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         $form['settings']['block_style']['padding'][$prefix]['padding_top'] = [
           '#type' => 'select',
           '#title' => t('Padding top'),
-          '#options' => _get_size_options(),
+          '#options' => bt_cbc_get_size_options(),
           '#description' => t("Block's padding top"),
           '#default_value' => $section_component->getThirdPartySetting('block_style', $prefix . '_padding_top'),
         ];
@@ -184,7 +184,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         $form['settings']['block_style']['padding'][$prefix]['padding_right'] = [
           '#type' => 'select',
           '#title' => t('Padding right'),
-          '#options' => _get_size_options(),
+          '#options' => bt_cbc_get_size_options(),
           '#description' => t("Block's padding right"),
           '#default_value' => $section_component->getThirdPartySetting('block_style', $prefix . '_padding_right'),
         ];
@@ -192,7 +192,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         $form['settings']['block_style']['padding'][$prefix]['padding_bottom'] = [
           '#type' => 'select',
           '#title' => t('Padding bottom'),
-          '#options' => _get_size_options(),
+          '#options' => bt_cbc_get_size_options(),
           '#description' => t("Block's padding bottom"),
           '#default_value' => $section_component->getThirdPartySetting('block_style', $prefix . '_padding_bottom'),
         ];
@@ -359,7 +359,7 @@ function bt_cbc_preprocess_layout(&$variables) {
   if ($regions = $layout->getRegionNames()) {
     foreach ($regions as $region_name) {
       if (isset($variables['content'][$region_name])) {
-        _block_style_layout_builder_add_styles($variables, $region_name);
+        bt_cbc_block_style_layout_builder_add_styles($variables, $region_name);
       }
     }
   }
@@ -368,7 +368,7 @@ function bt_cbc_preprocess_layout(&$variables) {
 /**
  * Helper function for adding classes via layout builder.
  */
-function _block_style_layout_builder_add_styles(&$variables, $region_name) {
+function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name) {
   foreach ($variables['content'][$region_name] as &$section_component) {
     $section_component['#configuration']['block_style'] = [];
     if (is_array($section_component) && isset($section_component['#block_style']['block_custom_classes'])) {
@@ -433,7 +433,7 @@ function _block_style_layout_builder_add_styles(&$variables, $region_name) {
 /**
  * Return an array of sizes to apply in block styles form.
  */
-function _get_size_options() :array {
+function bt_cbc_get_size_options() :array {
   return [
     'default' => t('Default'),
     'none' => t('None'),
@@ -447,7 +447,7 @@ function _get_size_options() :array {
 /**
  * Return an array of theme's color name.
  */
-function _get_theme_color_options() :array {
+function bt_cbc_get_theme_color_options() :array {
   return [
     'default' => t('Default'),
     'bs-primary' => t('Primary'),
@@ -517,7 +517,7 @@ function _get_theme_color_options() :array {
 /**
  * Return an form section for color element configurations.
  */
-function _get_color_form_settings(&$form, $section_component, $setting) {
+function bt_cbc_get_color_form_settings(&$form, $section_component, $setting) {
   $settings_texts = [
     'title' => [
       'title' => t('Title color'),
@@ -581,7 +581,7 @@ function _get_color_form_settings(&$form, $section_component, $setting) {
 
   $form['settings']['block_style'][$setting . '_color'][$setting . '_color_select'] = [
     '#type' => 'select',
-    '#options' => _get_theme_color_options(),
+    '#options' => bt_cbc_get_theme_color_options(),
     '#title' => t('Theme Color'),
     '#description' => $settings_texts[$setting]['description'],
     '#default_value' => $section_component->getThirdPartySetting('block_style', $setting . '_color_select'),

@@ -88,6 +88,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
 
   $other_block_content = [
     'bt_image',
+    'bt_image_link',
     'bt_cb_map',
     'bt_images_gallery',
     'bt_images_slide',

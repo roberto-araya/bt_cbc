@@ -7,4 +7,5 @@ dependencies:
   - address:address
   - bt_image:bt_image
   - svg_icon:svg_icon
+  - image_link_formatter:image_link_formatter
 package: Btester

@@ -144,12 +144,53 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         }
       }
 
+      // Animation.
+      $form['settings']['block_style']['animation'] = [
+        '#type' => 'details',
+        '#title' => t("Animation"),
+        '#tree' => TRUE,
+      ];
+
+      $form['settings']['block_style']['animation']['animation_option'] = [
+        '#type' => 'checkbox',
+        '#title' => t("Add animation"),
+      ];
+
+      $form['settings']['block_style']['animation']['animation_trigger'] = [
+        '#type' => 'select',
+        '#options' => [
+          'on_page_load' => t("On page load"),
+          'on_scroll' => t("On scroll"),
+        ],
+        '#title' => t('Animation Trigger'),
+        '#description' => t("Select an animation trigger."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_trigger'),
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['settings']['block_style']['animation']['animation_select'] = [
+        '#type' => 'select',
+        '#options' => bt_cbc_get_animation_options(),
+        '#title' => t('Animation Type'),
+        '#description' => t("Select a type of animation."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_select'),
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
       $screens = [
-        'sm' => t('min-width: 320px'),
-        'md' => t('min-width: 640px'),
-        'lg' => t('min-width: 768px'),
-        'xl' => t('min-width: 1280px'),
-        'xxl' => t('min-width: 1536px'),
+        'sm' => t('min-width: 576px'),
+        'md' => t('min-width: 768px'),
+        'lg' => t('min-width: 992px'),
+        'xl' => t('min-width: 1200px'),
+        'xxl' => t('min-width: 1400px'),
       ];
 
       $form['settings']['block_style']['padding'] = [
@@ -304,6 +345,20 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     }
     else {
       $section_component->unsetThirdPartySetting('block_style', $style . '_custom');
+    }
+  }
+
+  // animation
+  foreach (['option', 'trigger', 'select'] as $option) {
+    if ($component_style = $form_state->getValue([
+      'settings',
+      'block_style',
+      'animation', 'animation_' . $option,
+    ]) && $component_style == TRUE) {
+      $section_component->setThirdPartySetting('block_style', 'animation_' . $option, $component_style);
+    }
+    else {
+      $section_component->unsetThirdPartySetting('block_style', 'animation_' . $option);
     }
   }
 
@@ -600,4 +655,87 @@ function bt_cbc_get_color_form_settings(&$form, $section_component, $setting) {
   ];
 
   return $form;
+}
+
+/**
+ * Return an animations select options.
+ */
+function bt_cbc_get_animation_options() {
+  return [
+    'bounce' => 'Bounce',
+    'flash' => 'Flash',
+    'jello' => 'Jello',
+    'pulse' => 'Pulse',
+    'rubberBand' => 'Rubber Band',
+    'shake' => 'Shake',
+    'swing' => 'Swing',
+    'tada' => 'Tada',
+    'wooble' => 'Wooble',
+    'bounceIn' => 'Bounce In',
+    'bounceInDown' => 'Bounce In Down',
+    'bounceInLeft' => 'Bounce In Left',
+    'bounceInRight' => 'Bounce In Right',
+    'bounceInUp' => 'Bounce In UP',
+    'bounceOut' => 'Bounce Out',
+    'bounceOutDown' => 'Bounce Out Down',
+    'bounceOutLeft' => 'Bounce Out Left',
+    'bounceOutRight' => 'Bounce Out Right',
+    'bounceOutUp' => 'Bounce Out UP',
+    'fadeIn' => 'Fade In',
+    'fadeInDown' => 'Fade In Down',
+    'fadeInDownBig' => 'Fade In Down Big',
+    'fadeInLeft' => 'Fade In Left',
+    'fadeInLeft Big' => 'Fade In Left Big',
+    'fadeInRight' => 'Fade In Right',
+    'fadeInRightBig' => 'Fade In Right Big',
+    'fadeInUp' => 'Fade In Up',
+    'fadeInUpBig' => 'Fade In Up Big',
+    'fadeOut' => 'Fade Out',
+    'fadeOutDown' => 'Fade Out Down',
+    'fadeOutDownBig' => 'Fade Out Down Big',
+    'fadeOutLeft' => 'Fade Out Left',
+    'fadeOutLeft Big' => 'Fade Out Left Big',
+    'fadeOutRight' => 'Fade Out Right',
+    'fadeOutRightBig' => 'Fade Out Right Big',
+    'fadeOutUp' => 'Fade Out Up',
+    'fadeOutUpBig' => 'Fade Out Up Big',
+    'flip' => 'Flip',
+    'flipInX' => 'Flip In X',
+    'flipInY' => 'Flip In Y',
+    'flipOutX' => 'Flip Out X',
+    'flipOutY' => 'Flip Out Y',
+    'lightSpeedIn' => 'Light Speed In',
+    'lightSpeedOut' => 'Light Speed OUT',
+    'rotateIn' => 'Rotate In',
+    'rotateInDownLeft' => 'Rotate In Down Left',
+    'rotateInDownRight' => 'Rotate In Down Right',
+    'rotateInUpLeft' => 'Rotate In Up Left',
+    'rotateInUpRight' => 'Rotate In Up Right',
+    'rotateOut' => 'Rotate Out',
+    'rotateOutDownLeft' => 'Rotate Out Down Left',
+    'rotateOutDownRight' => 'Rotate Out Down Right',
+    'rotateOutUpLeft' => 'Rotate Out Up Left',
+    'rotateOutUpRight' => 'Rotate Out Up Right',
+    'slideInDown' => 'Slide In Down',
+    'slideInLeft' => 'Slide In Left',
+    'slideInRight' => 'Slide In Right',
+    'slideOutUp' => 'Slide Out Up',
+    'slideOutDown' => 'Slide Out Down',
+    'slideOutLeft' => 'Slide Out Left',
+    'slideOutRight' => 'Slide Out Right',
+    'slideOutUp' => 'Slide Out Up',
+    'hinge' => 'Hinge',
+    'rollIn' => 'Roll In',
+    'rollOut' => 'Roll Out',
+    'zoomIn' => 'Zoom In',
+    'zoomInDown' => 'Zoom In Down',
+    'zoomInLeft' => 'Zoom In Left',
+    'zoomInRight' => 'Zoom In Right',
+    'zoomInUp' => 'Zoom In Up',
+    'zoomOut' => 'Zoom Out',
+    'zoomOutDown' => 'Zoom Out Down',
+    'zoomOutLeft' => 'Zoom Out Left',
+    'zoomOutRight' => 'Zoom Out Right',
+    'zoomOutUp' => 'Zoom Out Up',
+  ];
 }

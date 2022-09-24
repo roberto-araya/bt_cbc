@@ -154,16 +154,18 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
       $form['settings']['block_style']['animation']['animation_option'] = [
         '#type' => 'checkbox',
         '#title' => t("Add animation"),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_option'),
       ];
 
+      // when the animation start
       $form['settings']['block_style']['animation']['animation_trigger'] = [
         '#type' => 'select',
         '#options' => [
           'on_page_load' => t("On page load"),
           'on_scroll' => t("On scroll"),
         ],
-        '#title' => t('Animation Trigger'),
-        '#description' => t("Select an animation trigger."),
+        '#title' => t('Trigger'),
+        '#description' => t("Select when trigger animation."),
         '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_trigger'),
         '#states' => [
           'visible' => [
@@ -172,12 +174,13 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      $form['settings']['block_style']['animation']['animation_select'] = [
+      // type of animation
+      $form['settings']['block_style']['animation']['animation_type'] = [
         '#type' => 'select',
         '#options' => bt_cbc_get_animation_options(),
-        '#title' => t('Animation Type'),
-        '#description' => t("Select a type of animation."),
-        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_select'),
+        '#title' => t('Type'),
+        '#description' => t("Select a type of animation. Default: Fade In."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_type') ? $section_component->getThirdPartySetting('block_style', 'animation_type') : 'fadeIn',
         '#states' => [
           'visible' => [
             ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
@@ -185,6 +188,98 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
+      // animation duration 
+      $form['settings']['block_style']['animation']['animation_duration'] = [
+        '#type' => 'textfield',
+        '#title' => t("Duration"),
+        '#description' => t("Enter the duration for the animation in seconds or miliseconds. Default (1s) for empty."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_duration'),
+        '#attributes' => [
+          'placeholder' => 'examples: 800ms,0.8s',
+        ],
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // animation count
+      $form['settings']['block_style']['animation']['animation_count'] = [
+        '#type' => 'textfield',
+        '#title' => t("Count"),
+        '#description' => t("Enter the number of cycles for the animation. Default (1) for empty."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_count'),
+        '#attributes' => [
+          'placeholder' => 'examples: 1, 2, 5',
+        ],
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // animation delay
+      $form['settings']['block_style']['animation']['animation_delay'] = [
+        '#type' => 'textfield',
+        '#title' => t("Delay"),
+        '#description' => t("Enter the delay for the animation in seconds or miliseconds. Default (0) for empty."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_delay'),
+        '#attributes' => [
+          'placeholder' => 'examples: 1s, 1000ms',
+        ],
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // animation function
+      $form['settings']['block_style']['animation']['animation_function'] = [
+        '#type' => 'select',
+        '#title' => t("Function"),
+        '#options' => [
+          'default' => 'Default',
+          'ease' => 'Ease',
+          'ease-in' => 'Ease In',
+          'ease-out' => 'Ease Out',
+          'ease-in-out' => 'Ease In Out',
+          'linear' => 'Linear',
+        ],
+        '#description' => t("Select the transition timing function. Default: Ease."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_function'),
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // animation fill mode
+      $form['settings']['block_style']['animation']['animation_fill'] = [
+        '#type' => 'select',
+        '#title' => t("Fill Mode"),
+        '#options' => [
+          'default' => 'Default',
+          'none' => 'None',
+          'forwards' => 'Forwards',
+          'backwards' => 'Backwards',
+          'both' => 'Both',
+          'initial' => 'Initial',
+          'inherit' => 'Inherit',
+        ],
+        '#description' => t("Select the animation-fill-mode property. Default: Both."),
+        '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_fill'),
+        '#states' => [
+          'visible' => [
+            ':input[name="settings[block_style][animation][animation_option]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // Breakpoints form options
       $screens = [
         'sm' => t('min-width: 576px'),
         'md' => t('min-width: 768px'),
@@ -349,12 +444,20 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
   }
 
   // animation
-  foreach (['option', 'trigger', 'select'] as $option) {
+  foreach ([
+    'option',
+    'trigger',
+    'type',
+    'duration',
+    'delay',
+    'count',
+    'function',
+    'fill'] as $option) {
     if ($component_style = $form_state->getValue([
       'settings',
       'block_style',
       'animation', 'animation_' . $option,
-    ]) && $component_style == TRUE) {
+    ])) {
       $section_component->setThirdPartySetting('block_style', 'animation_' . $option, $component_style);
     }
     else {
@@ -455,6 +558,21 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name)
       }
       if (is_array($section_component) && isset($section_component['#block_style'][$style . '_custom'])) {
         $section_component['#configuration']['block_style'][$style . '_custom'] = $section_component['#block_style'][$style . '_custom'];
+      }
+    }
+
+    // animation
+    foreach ([
+      'option',
+      'trigger',
+      'type',
+      'duration',
+      'delay',
+      'count',
+      'function',
+      'fill'] as $option) {
+      if (is_array($section_component) && isset($section_component['#block_style']['animation_' . $option])) {
+        $section_component['#configuration']['block_style']['animation_' . $option] = $section_component['#block_style']['animation_' . $option];
       }
     }
 
@@ -685,7 +803,7 @@ function bt_cbc_get_animation_options() {
     'fadeInDown' => 'Fade In Down',
     'fadeInDownBig' => 'Fade In Down Big',
     'fadeInLeft' => 'Fade In Left',
-    'fadeInLeft Big' => 'Fade In Left Big',
+    'fadeInLeftBig' => 'Fade In Left Big',
     'fadeInRight' => 'Fade In Right',
     'fadeInRightBig' => 'Fade In Right Big',
     'fadeInUp' => 'Fade In Up',
@@ -694,7 +812,7 @@ function bt_cbc_get_animation_options() {
     'fadeOutDown' => 'Fade Out Down',
     'fadeOutDownBig' => 'Fade Out Down Big',
     'fadeOutLeft' => 'Fade Out Left',
-    'fadeOutLeft Big' => 'Fade Out Left Big',
+    'fadeOutLeftBig' => 'Fade Out Left Big',
     'fadeOutRight' => 'Fade Out Right',
     'fadeOutRightBig' => 'Fade Out Right Big',
     'fadeOutUp' => 'Fade Out Up',

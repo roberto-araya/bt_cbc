@@ -7,9 +7,12 @@ dependencies:
     - field.field.block_content.bt_cb_testimonial.field_bt_blq_title
     - field.field.block_content.bt_cb_testimonial.field_bt_content_title
     - field.field.block_content.bt_cb_testimonial.field_bt_img
+    - field.field.block_content.bt_cb_testimonial.field_bt_name
+    - field.field.block_content.bt_cb_testimonial.field_bt_organization
     - field.field.block_content.bt_cb_testimonial.field_bt_paragraph
   module:
     - field_group
+    - media_library
     - text
 third_party_settings:
   field_group:
@@ -31,10 +34,12 @@ third_party_settings:
         required_fields: true
     group_content:
       children:
-        - field_bt_img
         - field_bt_content_title
+        - field_bt_name
+        - field_bt_img
+        - field_bt_organization
         - field_bt_paragraph
-      label: Content
+      label: Contenido
       region: content
       parent_name: ''
       weight: 2
@@ -75,18 +80,31 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_bt_img:
-    type: entity_reference_autocomplete
-    weight: 4
+    type: media_library_widget
+    weight: 7
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
+      media_types: {  }
+    third_party_settings: {  }
+  field_bt_name:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_organization:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_bt_paragraph:
     type: text_textarea
-    weight: 6
+    weight: 9
     region: content
     settings:
       rows: 5

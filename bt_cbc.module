@@ -157,7 +157,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_option'),
       ];
 
-      // when the animation start
+      // When the animation start.
       $form['settings']['block_style']['animation']['animation_trigger'] = [
         '#type' => 'select',
         '#options' => [
@@ -174,7 +174,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // type of animation
+      // Type of animation.
       $form['settings']['block_style']['animation']['animation_type'] = [
         '#type' => 'select',
         '#options' => bt_cbc_get_animation_options(),
@@ -188,7 +188,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // animation duration 
+      // Animation duration.
       $form['settings']['block_style']['animation']['animation_duration'] = [
         '#type' => 'textfield',
         '#title' => t("Duration"),
@@ -204,7 +204,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // animation count
+      // Animation count.
       $form['settings']['block_style']['animation']['animation_count'] = [
         '#type' => 'textfield',
         '#title' => t("Count"),
@@ -220,7 +220,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // animation delay
+      // Animation delay.
       $form['settings']['block_style']['animation']['animation_delay'] = [
         '#type' => 'textfield',
         '#title' => t("Delay"),
@@ -236,17 +236,17 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // animation function
+      // Animation function.
       $form['settings']['block_style']['animation']['animation_function'] = [
         '#type' => 'select',
         '#title' => t("Function"),
         '#options' => [
-          'default' => 'Default',
-          'ease' => 'Ease',
-          'ease-in' => 'Ease In',
-          'ease-out' => 'Ease Out',
-          'ease-in-out' => 'Ease In Out',
-          'linear' => 'Linear',
+          'default' => t('Default'),
+          'ease' => t('Ease'),
+          'ease-in' => t('Ease In'),
+          'ease-out' => t('Ease Out'),
+          'ease-in-out' => t('Ease In Out'),
+          'linear' => t('Linear'),
         ],
         '#description' => t("Select the transition timing function. Default: Ease."),
         '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_function'),
@@ -257,18 +257,18 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // animation fill mode
+      // Animation fill mode.
       $form['settings']['block_style']['animation']['animation_fill'] = [
         '#type' => 'select',
         '#title' => t("Fill Mode"),
         '#options' => [
-          'default' => 'Default',
-          'none' => 'None',
-          'forwards' => 'Forwards',
-          'backwards' => 'Backwards',
-          'both' => 'Both',
-          'initial' => 'Initial',
-          'inherit' => 'Inherit',
+          'default' => t('Default'),
+          'none' => t('None'),
+          'forwards' => t('Forwards'),
+          'backwards' => t('Backwards'),
+          'both' => t('Both'),
+          'initial' => t('Initial'),
+          'inherit' => t('Inherit'),
         ],
         '#description' => t("Select the animation-fill-mode property. Default: Both."),
         '#default_value' => $section_component->getThirdPartySetting('block_style', 'animation_fill'),
@@ -279,7 +279,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         ],
       ];
 
-      // Breakpoints form options
+      // Breakpoints form options.
       $screens = [
         'sm' => t('min-width: 576px'),
         'md' => t('min-width: 768px'),
@@ -443,7 +443,7 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     }
   }
 
-  // animation
+  // Animation.
   foreach ([
     'option',
     'trigger',
@@ -452,7 +452,8 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     'delay',
     'count',
     'function',
-    'fill'] as $option) {
+    'fill',
+  ] as $option) {
     if ($component_style = $form_state->getValue([
       'settings',
       'block_style',
@@ -465,12 +466,13 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     }
   }
 
-  // text_align option.
+  // Text_align option.
   if ($component_style = $form_state->getValue([
     'settings',
     'block_style',
     'text_align',
-  ])) {
+  ]
+  )) {
     $section_component->setThirdPartySetting('block_style', 'text_align', $component_style);
   }
 
@@ -561,7 +563,7 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name)
       }
     }
 
-    // animation
+    // Animation.
     foreach ([
       'option',
       'trigger',
@@ -570,7 +572,8 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name)
       'delay',
       'count',
       'function',
-      'fill'] as $option) {
+      'fill',
+    ] as $option) {
       if (is_array($section_component) && isset($section_component['#block_style']['animation_' . $option])) {
         $section_component['#configuration']['block_style']['animation_' . $option] = $section_component['#block_style']['animation_' . $option];
       }

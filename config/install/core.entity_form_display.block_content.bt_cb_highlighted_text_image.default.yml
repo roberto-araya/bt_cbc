@@ -13,6 +13,7 @@ dependencies:
     - field_group
     - field_states_ui
     - maxlength
+    - media_library
     - text
 third_party_settings:
   field_group:
@@ -21,46 +22,43 @@ third_party_settings:
         - info
         - field_bt_blq_desc
         - field_bt_blq_title
+      label: 'Block Info'
+      region: content
       parent_name: ''
       weight: 1
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: 'Administrative information about the block.'
         required_fields: true
-      label: 'Block Info'
     group_content:
       children:
         - field_bt_content_title
         - field_bt_epigrafe
         - field_bt_add_image
         - field_bt_highlighted_text
+      label: Contenido
+      region: content
       parent_name: ''
       weight: 2
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: 'Content of the block.'
         required_fields: true
-      label: Content
 id: block_content.bt_cb_highlighted_text_image.default
 targetEntityType: block_content
 bundle: bt_cb_highlighted_text_image
 mode: default
 content:
   field_bt_add_image:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 4
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_bt_blq_desc:
     type: string_textfield
@@ -106,11 +104,11 @@ content:
         form:
           type: ''
           list: ''
-          add: Add
+          add: Agregar
       maxlength:
-        maxlength_js: 100
+        maxlength_js: null
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
-        maxlength_js_enforce: true
+        maxlength_js_enforce: false
         maxlength_js_truncate_html: false
   info:
     type: string_textfield

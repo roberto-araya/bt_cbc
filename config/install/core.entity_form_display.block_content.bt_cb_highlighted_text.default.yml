@@ -16,31 +16,31 @@ third_party_settings:
     group_block:
       children:
         - info
-        - field_bt_blq_title
         - field_bt_blq_desc
+        - field_bt_blq_title
+      label: 'Block Info'
+      region: content
       parent_name: ''
       weight: 1
       format_type: fieldset
-      region: content
       format_settings:
+        classes: ''
+        id: ''
         description: 'Administrative information about the block.'
         required_fields: true
-        id: ''
-        classes: ''
-      label: 'Block Info'
     group_content:
       children:
         - field_bt_highlighted_text
+      label: Contenido
+      region: content
       parent_name: ''
       weight: 2
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: 'Content of the block.'
         required_fields: true
-      label: Content
 id: block_content.bt_cb_highlighted_text.default
 targetEntityType: block_content
 bundle: bt_cb_highlighted_text
@@ -74,9 +74,9 @@ content:
         form:
           type: ''
           list: ''
-          add: Add
+          add: Agregar
       maxlength:
-        maxlength_js: 100
+        maxlength_js: null
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: false
         maxlength_js_truncate_html: false

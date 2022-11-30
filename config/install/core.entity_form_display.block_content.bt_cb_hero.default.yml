@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - block_content.type.bt_cb_hero
-    - core.entity_form_mode.media.bt_inline_form
     - field.field.block_content.bt_cb_hero.field_bt_blq_desc
     - field.field.block_content.bt_cb_hero.field_bt_blq_title
     - field.field.block_content.bt_cb_hero.field_bt_button_icon
@@ -16,9 +15,9 @@ dependencies:
   module:
     - field_group
     - field_states_ui
-    - inline_entity_form
     - link
     - maxlength
+    - media_library
     - svg_icon
     - text
 third_party_settings:
@@ -28,7 +27,7 @@ third_party_settings:
         - info
         - field_bt_blq_desc
         - field_bt_blq_title
-      label: Block
+      label: Bloque
       region: content
       parent_name: ''
       weight: 1
@@ -47,7 +46,7 @@ third_party_settings:
         - field_bt_link_double
         - field_bt_button_icon
         - field_bt_button_secondary_icon
-      label: Content
+      label: Contenido
       region: content
       parent_name: ''
       weight: 2
@@ -116,27 +115,17 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_bt_img:
-    type: inline_entity_form_complex
-    weight: 7
+    type: media_library_widget
+    weight: 8
     region: content
     settings:
-      form_mode: bt_inline_form
-      override_labels: true
-      label_singular: Image
-      label_plural: Images
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      allow_duplicate: false
-      collapsible: false
-      collapsed: false
-      revision: false
+      media_types: {  }
     third_party_settings:
       field_states_ui:
         form:
           type: ''
           list: ''
-          add: Add
+          add: Agregar
   field_bt_link_double:
     type: link_default
     weight: 8
@@ -157,10 +146,10 @@ content:
         form:
           type: ''
           list: ''
-          add: Add
+          add: Agregar
       maxlength:
-        maxlength_js: 140
-        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js: null
+        maxlength_js_label: 'Contenido limitado a @limit caracteres, restantes: <strong>@remaining</strong>'
         maxlength_js_enforce: false
         maxlength_js_truncate_html: false
   info:

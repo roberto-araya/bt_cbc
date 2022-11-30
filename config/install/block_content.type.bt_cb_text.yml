@@ -2,6 +2,6 @@ langcode: en
 status: true
 dependencies: {  }
 id: bt_cb_text
-label: 'Text Block'
+label: 'Text'
 revision: 1
 description: 'Show a text block.'

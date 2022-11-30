@@ -2,6 +2,6 @@ langcode: es
 status: true
 dependencies: {  }
 id: bt_cb_text_image
-label: 'Bloque de texto con imagen'
+label: 'Texto con imagen'
 revision: 1
 description: 'Muestra un texto acompañado de una imagen.'

@@ -2,6 +2,6 @@ langcode: en
 status: true
 dependencies: {  }
 id: bt_cb_text_image
-label: 'Imagen text block'
+label: 'Imagen text'
 revision: 1
 description: 'Show a text joined with an image.'

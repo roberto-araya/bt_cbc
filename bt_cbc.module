@@ -110,6 +110,19 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
         '#tree' => TRUE,
       ];
 
+      // Fonts.
+      foreach (['title', 'caption', 'text'] as $title_option) {
+        if (array_key_exists($title_option, $block_content[$block_content_bundle])) {
+          $form['settings']['block_style'][$title_option . '_font_select'] = [
+            '#type' => 'select',
+            '#options' => bt_cbc_get_font_options(),
+            '#title' => t('Default font'),
+            '#description' => t("Select a default font. See https://fonts.google.com/."),
+            '#default_value' => $section_component->getThirdPartySetting('block_style', $title_option. '_font_select'),
+          ];
+        }
+      }
+
       // Background.
       $form['settings']['block_style']['background_color'] = [
         '#type' => 'details',
@@ -443,6 +456,19 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     }
   }
 
+  foreach (['title_font', 'caption_font', 'text_font'] as $font_option) {
+    if ($component_style = $form_state->getValue([
+      'settings',
+      'block_style',
+      $font_option . '_select',
+    ])) {
+      $section_component->setThirdPartySetting('block_style', $font_option);
+    }
+    else {
+      $section_component->unsetThirdPartySetting('block_style', $font_option);
+    }
+  }
+
   // Animation.
   foreach ([
     'option',
@@ -560,6 +586,13 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name)
       }
       if (is_array($section_component) && isset($section_component['#block_style'][$style . '_custom'])) {
         $section_component['#configuration']['block_style'][$style . '_custom'] = $section_component['#block_style'][$style . '_custom'];
+      }
+    }
+
+    // Font.
+    foreach (['title_font', 'caption_font', 'text_font'] as $font_option) {
+      if (is_array($section_component) && isset($section_component['#block_style'][$font_option . '_select'])) {
+        $section_component['#configuration']['block_style'][$font_option . '_select'] = $section_component['#block_style'][$font_option . '_select'];
       }
     }
 
@@ -859,4 +892,49 @@ function bt_cbc_get_animation_options() {
     'zoomOutRight' => 'Zoom Out Right',
     'zoomOutUp' => 'Zoom Out Up',
   ];
+}
+
+/**
+ * Return an font select options.
+ */
+function bt_cbc_get_font_options() {
+  $options = [
+    'default' => 'Default',
+    'roboto' => 'Roboto',
+    'jolly-lodger' => 'Jolly Lodger',
+    'oswald' => 'Oswald',
+    'zen-antique' => 'Zen Antique',
+    'amatic-sc' => 'Amatic SC',
+    'kalam' => 'Kalam',
+    'russo-one' => 'Russo One',
+    'archivo-black' => 'Archivo Black',
+    'el-messiri' => 'El Messiri',
+    'akaya-telivigala' => 'Akaya Telivigala',
+    'baloo-2' => 'Baloo 2',
+    'noticia-text' => 'Noticia Text',
+    'kaushan-script' => 'Kaushan Script',
+    'titan-one' => 'Titan One',
+    'montserrat' => 'Montserrat',
+    'ubuntu' => 'Ubuntu',
+    'merriweather' => 'Merriweather',
+    'playfair-display' => 'Playfair Display',
+    'kanit' => 'Kanit',
+    'lora' => 'Lora',
+    'fira-sans' => 'Fira Sans',
+    'quicksand' => 'Quicksand',
+    'barlow' => 'Barlow',
+    'titillium-web' => 'Titillium Web',
+    'trispace' => 'Trispace',
+    'josefin-sans' => 'Josefin Sans',
+    'shalimar' => 'Shalimar',
+    'anton' => 'Anton',
+    'dancing-script' => 'Dancing Script',
+    'secular-one' => 'Secular One',
+    'lobster' => 'Lobster',
+    'fjalla-one' => 'Fjalla One',
+    'exo-2' => 'Exo 2',
+    'caveat' => 'Caveat',
+  ];
+
+  return $options;
 }

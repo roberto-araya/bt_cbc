@@ -111,15 +111,22 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
       ];
 
       // Fonts.
-      foreach (['title', 'caption', 'text'] as $title_option) {
-        if (array_key_exists($title_option, $block_content[$block_content_bundle])) {
-          $form['settings']['block_style'][$title_option . '_font_select'] = [
-            '#type' => 'select',
-            '#options' => bt_cbc_get_font_options(),
-            '#title' => t('Default font'),
-            '#description' => t("Select a default font. See https://fonts.google.com/."),
-            '#default_value' => $section_component->getThirdPartySetting('block_style', $title_option. '_font_select'),
-          ];
+      if (!in_array($block_content_bundle, $other_block_content)) {
+        $form['settings']['block_style']['fonts'] = [
+          '#type' => 'details',
+          '#title' => t("Fonts"),
+          '#description' => t("Select a default font. See https://fonts.google.com/."),
+          '#tree' => TRUE,
+        ];
+        foreach (['title', 'caption', 'text'] as $text) {
+          if (in_array($text, $block_content[$block_content_bundle])) {
+            $form['settings']['block_style']['fonts'][$text . '_font_select'] = [
+              '#type' => 'select',
+              '#options' => bt_cbc_get_font_options(),
+              '#title' => t(ucfirst($text) . ' font'),
+              '#default_value' => $section_component->getThirdPartySetting('block_style', $text . '_font_select'),
+            ];
+          }
         }
       }
 
@@ -455,17 +462,19 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
       $section_component->unsetThirdPartySetting('block_style', $style . '_custom');
     }
   }
-
+  
+  // Fonts.
   foreach (['title_font', 'caption_font', 'text_font'] as $font_option) {
     if ($component_style = $form_state->getValue([
       'settings',
       'block_style',
+      'fonts',
       $font_option . '_select',
     ])) {
-      $section_component->setThirdPartySetting('block_style', $font_option);
+      $section_component->setThirdPartySetting('block_style', $font_option . '_select', $component_style);
     }
     else {
-      $section_component->unsetThirdPartySetting('block_style', $font_option);
+      $section_component->unsetThirdPartySetting('block_style', $font_option . '_select');
     }
   }
 
@@ -592,8 +601,7 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name)
     // Font.
     foreach (['title_font', 'caption_font', 'text_font'] as $font_option) {
       if (is_array($section_component) && isset($section_component['#block_style'][$font_option . '_select'])) {
-        $section_component['#configuration']['block_style'][$font_option . '_select'] = $section_component['#block_style'][$font_option . '_select'];
-      }
+        $section_component['#configuration']['block_style'][$font_option . '_select'] = $section_component['#block_style'][$font_option . '_select'];      }
     }
 
     // Animation.

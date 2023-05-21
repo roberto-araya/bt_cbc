@@ -825,6 +825,14 @@ function _menu_block_style_form_builder() {
     '#title' => t('Menu Type'),
     '#description' => t("Select a type of presentation."),
   ];
+  // Menu gap.
+  $block_style['gap'] = [
+    '#type' => 'textfield',
+    '#title' => 'Gap',
+    '#description' => t("The gap between elements, units: px, rem. Examples: 1rem, 16px."),
+  ];
+
+  // Item.
   $block_style['item'] = [
     '#type' => 'details',
     '#title' => t('Item'),
@@ -832,7 +840,6 @@ function _menu_block_style_form_builder() {
     '#weight' => 10,
   ];
 
-  // Item.
   $block_style['item']['color'] = [
     '#type' => 'details',
     '#title' => t('Color'),
@@ -900,9 +907,12 @@ function _menu_block_style_form_builder() {
  * Block menu_block layout builder.
  */
 function _menu_block_style_layout_builder_form_builder(&$section_component) {
-  // Type.
   $block_style = _menu_block_style_form_builder();
+  // Type.
   $block_style['type']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'type');
+
+  // Gap.
+  $block_style['gap']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'gap');
 
   // Item color.
   $block_style['item']['color']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_color_select');
@@ -928,8 +938,14 @@ function _menu_block_style_layout_builder_form_builder(&$section_component) {
  */
 function _menu_block_style_block_layout_form_builder($block) {
   $block_style = _menu_block_style_form_builder();
+
+  // Type.
   $default_values = $block->getThirdPartySetting('bt_cbc', 'type');
   $block_style['type']['#default_value'] = $default_values ? $default_values : '';
+
+  // Gap.
+  $default_values = $block->getThirdPartySetting('bt_cbc', 'gap');
+  $block_style['gap']['#default_value'] = $default_values ? $default_values : '';
 
   // Item.
   $default_values = $block->getThirdPartySetting('bt_cbc', 'item');
@@ -960,6 +976,13 @@ function _menu_block_style_layout_builder_form_submit($form_state, $section_comp
   if ($component_style = $form_state->getValue($get_value)) {
     $section_component->setThirdPartySetting('bt_cbc', 'type', $component_style);
   }
+
+  // Gap.
+  $get_value = ['third_party_settings', 'bt_cbc', 'gap'];
+  if ($component_style = $form_state->getValue($get_value)) {
+    $section_component->setThirdPartySetting('bt_cbc', 'gap', $component_style);
+  }
+
   // Item color.
   $get_value = [
     'third_party_settings',
@@ -1080,14 +1103,38 @@ function _branding_block_style_form_builder() {
   ];
 
   // Name.
-  $block_style['name_font_size'] = [
+  $block_style['name'] = [
+    '#type' => 'details',
+    '#title' => t('Name'),
+    '#tree' => TRUE,
+  ];
+
+  // Name color.
+  $colors = _block_style_color('name');
+  $block_style['name']['color_select'] = $colors['color_select'];
+  $block_style['name']['color_custom'] = $colors['color_custom'];
+
+  // Name font_size.
+  $block_style['name']['font_size'] = [
     '#type' => 'textfield',
     '#title' => t('Name Font Size'),
     '#description' => t("CSS Property. Examples: 2rem; 32px;"),
   ];
 
   // Slogan.
-  $block_style['slogan_font_size'] = [
+  $block_style['slogan'] = [
+    '#type' => 'details',
+    '#title' => t('Slogan'),
+    '#tree' => TRUE,
+  ];
+
+  // Slogan color.
+  $colors = _block_style_color('slogan');
+  $block_style['slogan']['color_select'] = $colors['color_select'];
+  $block_style['slogan']['color_custom'] = $colors['color_custom'];
+
+  // Slogan font_size.
+  $block_style['slogan']['font_size'] = [
     '#type' => 'textfield',
     '#title' => t('Slogan Font Size'),
     '#description' => t("CSS Property. Examples: 2rem; 32px;"),
@@ -1103,8 +1150,14 @@ function _branding_block_style_layout_builder_form_builder(&$section_component) 
   $block_style = _branding_block_style_form_builder();
   $block_style['type']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'type');
   $block_style['logo_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'logo_size');
-  $block_style['name_font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'name_font_size');
-  $block_style['slogan_font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'slogan_font_size');
+
+  $block_style['name']['font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'name_font_size');
+  $block_style['name']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'name_color_select');
+  $block_style['name']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'name_color_custom');
+
+  $block_style['slogan']['font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'slogan_font_size');
+  $block_style['slogan']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'slogan_color_select');
+  $block_style['slogan']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'slogan_color_custom');
 
   return $block_style;
 }
@@ -1121,11 +1174,15 @@ function _branding_block_style_block_layout_form_builder($block) {
   $default_values = $block->getThirdPartySetting('bt_cbc', 'logo_size');
   $block_style['logo_size']['#default_value'] = $default_values ? $default_values : '';
 
-  $default_values = $block->getThirdPartySetting('bt_cbc', 'name_font_size');
-  $block_style['name_font_size']['#default_value'] = $default_values ? $default_values : '';
+  $default_values = $block->getThirdPartySetting('bt_cbc', 'name');
+  $block_style['name']['font_size']['#default_value'] = $default_values ? $default_values['font_size'] : '';
+  $block_style['name']['color_select']['#default_value'] = $default_values ? $default_values['color_select'] : '';
+  $block_style['name']['color_custom']['#default_value'] = $default_values ? $default_values['color_custom'] : '';
 
-  $default_values = $block->getThirdPartySetting('bt_cbc', 'slogan_font_size');
-  $block_style['slogan_font_size']['#default_value'] = $default_values ? $default_values : '';
+  $default_values = $block->getThirdPartySetting('bt_cbc', 'slogan');
+  $block_style['slogan']['font_size']['#default_value'] = $default_values ? $default_values['font_size'] : '';
+  $block_style['slogan']['color_select']['#default_value'] = $default_values ? $default_values['color_select'] : '';
+  $block_style['slogan']['color_custom']['#default_value'] = $default_values ? $default_values['color_custom'] : '';
 
   return $block_style;
 }
@@ -1144,12 +1201,12 @@ function branding_block_style_layout_builder_form_submit($form_state, $section_c
     $section_component->setThirdPartySetting('bt_cbc', 'logo_size', $component_style);
   }
 
-  $get_value = ['third_party_settings', 'bt_cbc', 'name_font_size'];
+  $get_value = ['third_party_settings', 'bt_cbc', 'name' , 'font_size'];
   if ($component_style = $form_state->getValue($get_value)) {
     $section_component->setThirdPartySetting('bt_cbc', 'name_font_size', $component_style);
   }
 
-  $get_value = ['third_party_settings', 'bt_cbc', 'slogan_font_size'];
+  $get_value = ['third_party_settings', 'bt_cbc', 'slogan', 'font_size'];
   if ($component_style = $form_state->getValue($get_value)) {
     $section_component->setThirdPartySetting('bt_cbc', 'slogan_font_size', $component_style);
   }

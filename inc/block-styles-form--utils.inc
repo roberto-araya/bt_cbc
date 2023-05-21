@@ -416,6 +416,11 @@ function _menu_block_styles_block_preprocess($block, &$variables) {
     $variables['configuration']['block_style']['type'] = $settings;
   }
 
+  // Gap.
+  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'gap')) {
+    $variables['configuration']['block_style']['gap'] = $settings;
+  }
+
   // Item.
   if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'item')) {
     // Item color.
@@ -451,13 +456,17 @@ function _branding_block_styles_block_preprocess($block, &$variables) {
   }
 
   // Name Font Size.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'name_font_size')) {
-    $variables['configuration']['block_style']['name_font_size'] = $settings;
+  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'name')) {
+    $variables['configuration']['block_style']['name_font_size'] = $settings['font_size'];
+    $variables['configuration']['block_style']['name_color_select'] = $settings['color_select'];
+    $variables['configuration']['block_style']['name_color_custom'] = $settings['color_custom'];
   }
 
   // Slogan Font Size.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'slogan_font_size')) {
-    $variables['configuration']['block_style']['slogan_font_size'] = $settings;
+  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'slogan')) {
+    $variables['configuration']['block_style']['slogan_font_size'] = $settings['font_size'];
+    $variables['configuration']['block_style']['slogan_color_select'] = $settings['color_select'];
+    $variables['configuration']['block_style']['slogan_color_custom'] = $settings['color_custom'];
   }
 
 }

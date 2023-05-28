@@ -819,6 +819,8 @@ function _menu_block_style_form_builder() {
     '#type' => 'select',
     '#options' => [
       'default' => t('Default'),
+      'horizontal' => t('Horizontal'),
+      'vertical' => t('Vertical'),
       'one' => t('Variant 1'),
       'two' => t('Variant 2'),
     ],
@@ -900,6 +902,12 @@ function _menu_block_style_form_builder() {
     ':input[name="third_party_settings[bt_cbc][item][background][hover][color_select]"]' => ['value' => 'customColor'],
   ];
 
+  $block_style['item']['padding'] = [
+    '#type' => 'details',
+    '#title' => t('Padding'),
+    '#tree' => TRUE,
+  ];
+
   return $block_style;
 }
 
@@ -929,6 +937,24 @@ function _menu_block_style_layout_builder_form_builder(&$section_component) {
   // Item background hover.
   $block_style['item']['background']['hover']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_background_hover_color_select');
   $block_style['item']['background']['hover']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_background_hover_color_custom');
+
+  // Breakpoint styles.
+  $screens = [
+    'sm' => t('min-width: 576px'),
+    'md' => t('min-width: 768px'),
+    'lg' => t('min-width: 992px'),
+    'xl' => t('min-width: 1200px'),
+    'xxl' => t('min-width: 1400px'),
+  ];
+
+  foreach ($screens as $prefix => $breakpoint) {
+    // Padding.
+    $block_style['item']['padding'][$prefix] = _block_style_padding($breakpoint);
+    $block_style['item']['padding'][$prefix]['padding_left']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_left');
+    $block_style['item']['padding'][$prefix]['padding_top']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_top');
+    $block_style['item']['padding'][$prefix]['padding_right']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_right');
+    $block_style['item']['padding'][$prefix]['padding_bottom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_bottom');
+  }
 
   return $block_style;
 }
@@ -963,6 +989,24 @@ function _menu_block_style_block_layout_form_builder($block) {
   // Item hover background.
   $block_style['item']['background']['hover']['color_select']['#default_value'] = $default_values ? $default_values['background']['hover']['color_select'] : '';
   $block_style['item']['background']['hover']['color_custom']['#default_value'] = $default_values ? $default_values['background']['hover']['color_custom'] : '';
+
+  // Breakpoint styles.
+  $screens = [
+    'sm' => t('min-width: 576px'),
+    'md' => t('min-width: 768px'),
+    'lg' => t('min-width: 992px'),
+    'xl' => t('min-width: 1200px'),
+    'xxl' => t('min-width: 1400px'),
+  ];
+
+  foreach ($screens as $prefix => $breakpoint) {
+    // Padding.
+    $block_style['item']['padding'][$prefix] = _block_style_padding($breakpoint);
+    $block_style['item']['padding'][$prefix]['padding_left']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_left'] : '';
+    $block_style['item']['padding'][$prefix]['padding_top']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_top'] : '';
+    $block_style['item']['padding'][$prefix]['padding_right']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_right'] : '';
+    $block_style['item']['padding'][$prefix]['padding_bottom']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_bottom'] : '';
+  }
 
   return $block_style;
 }
@@ -1076,6 +1120,46 @@ function _menu_block_style_layout_builder_form_submit($form_state, $section_comp
     $section_component->setThirdPartySetting('bt_cbc', 'item_background_hover_color_custom', $component_style);
   }
 
+  // Item Padding.
+  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    // Padding.
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'item',
+      'padding',
+      $prefix,
+      'padding_left',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'item_' . $prefix, $get_value);
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'item',
+      'padding',
+      $prefix,
+      'padding_top',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'item_' . $prefix, $get_value);
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'item',
+      'padding',
+      $prefix,
+      'padding_right',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'item_' . $prefix, $get_value);
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'item',
+      'padding',
+      $prefix,
+      'padding_bottom',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'item_' . $prefix, $get_value);
+  }
 }
 
 /**

@@ -339,7 +339,7 @@ function bt_cbc_preprocess_layout(&$variables) {
 /**
  * Helper function for adding block styles via layout builder.
  */
-function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name) {
+function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name, $layout_id) {
   $keys = \Drupal::routeMatch()->getParameters()->keys();
   foreach ($keys as $entity_name) {
     if ($entity_name == 'section_storage') {
@@ -364,7 +364,8 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name)
       }
     }
     foreach ($variables['content'][$region_name] as $component_id => &$section_component) {
-      if ($component_id != '#attributes' && array_key_exists($component_id, $components)) {
+      if ($component_id != '#attributes' &&
+      ($components && array_key_exists($component_id, $components))) {
         $component = $components[$component_id];
         $settings = $component->getThirdPartySettings('bt_cbc');
         $section_component['#configuration']['block_style'] = $settings;

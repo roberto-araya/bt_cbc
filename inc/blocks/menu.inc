@@ -171,7 +171,7 @@ function _menu_block_style_layout_builder_form_builder(&$section_component) {
 
     // Item font size.
     $block_style['item']['font_size'][$prefix] = $font_size_details;
-    $block_style['item']['font_size'][$prefix]['font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'title_' . $prefix . '_font_size');
+    $block_style['item']['font_size'][$prefix]['font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_font_size');
 
     // Padding.
     $block_style['item']['padding'][$prefix] = _block_style_padding($breakpoint);
@@ -193,13 +193,13 @@ function _menu_block_style_block_layout_form_builder($block) {
   $block_style = _menu_block_style_form_builder();
 
   // Title.
-  $default_values = $block->getThirdPartySetting('bt_cbc', 'title');
+  $title_values = $block->getThirdPartySetting('bt_cbc', 'title');
   // Title color.
-  $block_style['title']['color_select']['#default_value'] = $default_values ? $default_values['color_select'] : '';
-  $block_style['title']['color_custom']['#default_value'] = $default_values ? $default_values['color_custom'] : '';
+  $block_style['title']['color_select']['#default_value'] = $title_values ? $title_values['color_select'] : '';
+  $block_style['title']['color_custom']['#default_value'] = $title_values ? $title_values['color_custom'] : '';
 
   // Title font family.
-  $block_style['title']['font_family']['#default_value'] = $default_values ? $default_values['font_family'] : '';
+  $block_style['title']['font_family']['#default_value'] = $title_values ? $title_values['font_family'] : '';
 
   // Type.
   $default_values = $block->getThirdPartySetting('bt_cbc', 'type');
@@ -236,7 +236,7 @@ function _menu_block_style_block_layout_form_builder($block) {
     $font_size_details = _block_style_font_size($breakpoint);
     // Title font size.
     $block_style['title']['font_size'][$prefix] = $font_size_details;
-    $block_style['title']['font_size'][$prefix]['font_size']['#default_value'] = $default_values ? $default_values['font_size'][$prefix]['font_size'] : '';
+    $block_style['title']['font_size'][$prefix]['font_size']['#default_value'] = $title_values ? $title_values['font_size'][$prefix]['font_size'] : '';
 
     // Item font size.
     $block_style['item']['font_size'][$prefix] = $font_size_details;

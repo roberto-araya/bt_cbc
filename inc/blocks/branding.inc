@@ -126,11 +126,11 @@ function _branding_block_style_block_layout_form_builder($block) {
   foreach ($screens as $prefix => $breakpoint) {
     // Name font size.
     $block_style['name']['font_size'][$prefix] = _block_style_font_size($breakpoint);
-    $block_style['name']['font_size'][$prefix]['font_size']['#default_value'] = $name_values['font_size'][$prefix]['font_size'];
+    $block_style['name']['font_size'][$prefix]['font_size']['#default_value'] = $name_values ? $name_values['font_size'][$prefix]['font_size'] : '';
 
     // Slogan font size.
     $block_style['slogan']['font_size'][$prefix] = _block_style_font_size($breakpoint);
-    $block_style['slogan']['font_size'][$prefix]['font_size']['#default_value'] = $slogan_values['font_size'][$prefix]['font_size'];
+    $block_style['slogan']['font_size'][$prefix]['font_size']['#default_value'] = $slogan_values ? $slogan_values['font_size'][$prefix]['font_size'] : '';
   }
 
   return $block_style;

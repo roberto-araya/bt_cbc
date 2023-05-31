@@ -5,11 +5,22 @@
  * BT_CBC module file.
  */
 
-include 'inc/block-styles-form--blocks-forms.inc';
-include 'inc/block-styles-form--utils.inc';
-include 'inc/block-styles-form--elements-builders.inc';
-include 'inc/block-styles-form--styles-builders.inc';
-include 'inc/block-styles-form--elements-submits.inc';
+include 'inc/block-styles-form-utils.inc';
+include 'inc/block-styles-form-builders.inc';
+include 'inc/block-styles-form-submits.inc';
+include 'inc/blocks/branding.inc';
+include 'inc/blocks/bt_cb_cta.inc';
+include 'inc/blocks/bt_cb_hero.inc';
+include 'inc/blocks/bt_cb_highlighted_text_image.inc';
+include 'inc/blocks/bt_cb_highlighted_text.inc';
+include 'inc/blocks/bt_cb_quote.inc';
+include 'inc/blocks/bt_cb_section_title.inc';
+include 'inc/blocks/bt_cb_testimonial.inc';
+include 'inc/blocks/bt_cb_text_icon.inc';
+include 'inc/blocks/bt_cb_text_image.inc';
+include 'inc/blocks/bt_cb_title_icon.inc';
+include 'inc/blocks/bt_cb_title_image.inc';
+include 'inc/blocks/menu.inc';
 
 /**
  * @file

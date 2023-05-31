@@ -6,6 +6,43 @@
  */
 
 /**
+ * Returns a list of all blocks to which custom style settings will be applied.
+ */
+function _get_custom_styled_blocks() {
+  $blocks = [
+    'bt_cb_cta',
+    'bt_cb_hero',
+    'bt_cb_highlighted_text_image',
+    'bt_cb_text_icon',
+    'bt_cb_text_image',
+    'bt_cb_quote',
+    'bt_cb_section_title',
+    'bt_cb_text',
+    'bt_cb_title_icon',
+    'bt_cb_title_image',
+    'bt_cb_testimonial',
+    'bt_cb_highlighted_text',
+    'menu_block',
+    'branding_block',
+  ];
+  return $blocks;
+
+}
+
+/**
+ * Returns a list of breakpoint screen sizes.
+ */
+function _get_screens_breakpoints() {
+  return [
+    'sm' => t('min-width: 576px'),
+    'md' => t('min-width: 768px'),
+    'lg' => t('min-width: 992px'),
+    'xl' => t('min-width: 1200px'),
+    'xxl' => t('min-width: 1400px'),
+  ];
+}
+
+/**
  * Return an font select options.
  */
 function _get_font_family_options() {
@@ -218,258 +255,8 @@ function _get_animation_options() {
 }
 
 /**
- * Return a list of custom styled blocks.
- */
-function _get_custom_styled_blocks() {
-  $blocks = [
-    'bt_cb_cta',
-    'bt_cb_hero',
-    'bt_cb_highlighted_text_image',
-    'bt_cb_text_icon',
-    'bt_cb_text_image',
-    'bt_cb_quote',
-    'bt_cb_section_title',
-    'bt_cb_text',
-    'bt_cb_title_icon',
-    'bt_cb_title_image',
-    'bt_cb_testimonial',
-    'bt_cb_highlighted_text',
-    'menu_block',
-    'branding_block',
-  ];
-  return $blocks;
-
-}
-
-/**
  * Block Styles Block Preprocess Utils.
  */
-
-/**
- * Preprocess for bt_cb_cta blocks.
- */
-function _bt_cb_cta_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-  // Buttons.
-  _buttons_styles_block_preprocess($block, $variables);
-}
-
-/**
- * Preprocess for bt_cb_hero blocks.
- */
-function _bt_cb_hero_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-  // Buttons.
-  _buttons_styles_block_preprocess($block, $variables);
-}
-
-/**
- * Preprocess for bt_cb_highlighted_text_image blocks.
- */
-function _bt_cb_highlighted_text_image_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-  // Highlighted.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'highlighted')) {
-    $variables['configuration']['block_style']['highlighted_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['highlighted_color_custom'] = $settings['color_custom'];
-  }
-}
-
-/**
- * Preprocess for bt_cb_text_icon blocks.
- */
-function _bt_cb_text_icon_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-  // Icon.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'icon')) {
-    $variables['configuration']['block_style']['icon_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['icon_color_custom'] = $settings['color_custom'];
-  }
-  // Buttons.
-  _buttons_styles_block_preprocess($block, $variables);
-}
-
-/**
- * Preprocess for bt_cb_text_image blocks.
- */
-function _bt_cb_text_image_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-  // Buttons.
-  _buttons_styles_block_preprocess($block, $variables);
-}
-
-/**
- * Preprocess for bt_cb_quote blocks.
- */
-function _bt_cb_quote_styles_block_preprocess($block, &$variables) {
-  foreach (['text', 'source', 'link', 'symbol'] as $element) {
-    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', $element)) {
-      $variables['configuration']['block_style'][$element . '_color_select'] = $settings['color_select'];
-      $variables['configuration']['block_style'][$element . '_color_custom'] = $settings['color_custom'];
-    }
-  }
-}
-
-/**
- * Preprocess for bt_cb_section_title blocks.
- */
-function _bt_cb_section_title_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-}
-
-/**
- * Preprocess for bt_cb_text blocks.
- */
-function _bt_cb_text_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-  // Buttons.
-  _buttons_styles_block_preprocess($block, $variables);
-}
-
-/**
- * Preprocess for bt_cb_title_icon blocks.
- */
-function _bt_cb_title_icon_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'icon')) {
-    $variables['configuration']['block_style']['icon_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['icon_color_custom'] = $settings['color_custom'];
-  }
-}
-
-/**
- * Preprocess for bt_cb_title_image blocks.
- */
-function _bt_cb_title_image_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Caption.
-  _tct_styles_block_preprocess($block, $variables, 'caption');
-}
-
-/**
- * Preprocess for bt_cb_testimonial blocks.
- */
-function _bt_cb_testimonial_styles_block_preprocess($block, &$variables) {
-  // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title');
-  // Text.
-  _tct_styles_block_preprocess($block, $variables, 'text');
-}
-
-/**
- * Preprocess for bt_cb_highlighted_text blocks.
- */
-function _bt_cb_highlighted_text_styles_block_preprocess($block, &$variables) {
-  // Highlighted.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'highlighted')) {
-    $variables['configuration']['block_style']['highlighted_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['highlighted_color_custom'] = $settings['color_custom'];
-  }
-}
-
-/**
- * Preprocess for menu_block blocks.
- */
-function _menu_block_styles_block_preprocess($block, &$variables) {
-  // Type.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'type')) {
-    $variables['configuration']['block_style']['type'] = $settings;
-  }
-
-  // Gap.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'gap')) {
-    $variables['configuration']['block_style']['gap'] = $settings;
-  }
-
-  // Item.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'item')) {
-    // Item color.
-    $variables['configuration']['block_style']['item_color_select'] = $settings['color']['color_select'];
-    $variables['configuration']['block_style']['item_color_custom'] = $settings['color']['color_custom'];
-
-    // Item color hover.
-    $variables['configuration']['block_style']['item_hover_color_select'] = $settings['color']['hover']['color_select'];
-    $variables['configuration']['block_style']['item_hover_color_custom'] = $settings['color']['hover']['color_custom'];
-
-    // Item background.
-    $variables['configuration']['block_style']['item_background_color_select'] = $settings['background']['color_select'];
-    $variables['configuration']['block_style']['item_background_color_custom'] = $settings['background']['color_custom'];
-
-    // Item background hover.
-    $variables['configuration']['block_style']['item_background_hover_color_select'] = $settings['background']['hover']['color_select'];
-    $variables['configuration']['block_style']['item_background_hover_color_custom'] = $settings['background']['hover']['color_custom'];
-  }
-}
-
-/**
- * Preprocess for branding_block blocks.
- */
-function _branding_block_styles_block_preprocess($block, &$variables) {
-  // Type.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'type')) {
-    $variables['configuration']['block_style']['type'] = $settings;
-  }
-
-  // Logo Size.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'logo_size')) {
-    $variables['configuration']['block_style']['logo_size'] = $settings;
-  }
-
-  // Name Font Size.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'name')) {
-    $variables['configuration']['block_style']['name_font_size'] = $settings['font_size'];
-    $variables['configuration']['block_style']['name_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['name_color_custom'] = $settings['color_custom'];
-  }
-
-  // Slogan Font Size.
-  if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'slogan')) {
-    $variables['configuration']['block_style']['slogan_font_size'] = $settings['font_size'];
-    $variables['configuration']['block_style']['slogan_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['slogan_color_custom'] = $settings['color_custom'];
-  }
-
-}
 
 /**
  * Block Styles block preprocess for title, captio and text elements.

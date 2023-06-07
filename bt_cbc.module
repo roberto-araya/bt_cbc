@@ -76,10 +76,16 @@ function bt_cbc_form_block_form_alter(&$form, FormStateInterface $form_state, $f
       'xxl' => t('min-width: 1400px'),
     ];
 
+    $max_width_default_value = $block->getThirdPartySetting('bt_cbc', 'max_width');
     $padding_default_values = $block->getThirdPartySetting('bt_cbc', 'padding');
-    $block_align_default_value = $block->getThirdPartySetting('bt_cbc', 'block_align');
+    $align_default_value = $block->getThirdPartySetting('bt_cbc', 'align');
+    $justify_default_value = $block->getThirdPartySetting('bt_cbc', 'justify');
     $text_align_default_value = $block->getThirdPartySetting('bt_cbc', 'text_align');
     foreach ($screens as $prefix => $breakpoint) {
+      // Max width.
+      $form['third_party_settings']['bt_cbc']['max_width'][$prefix] = _block_style_max_width($breakpoint);
+      $form['third_party_settings']['bt_cbc']['max_width'][$prefix]['max_width']['#default_value'] = $max_width_default_value ? $max_width_default_value[$prefix]['max_width'] : 'default';
+
       // Padding.
       $form['third_party_settings']['bt_cbc']['padding'][$prefix] = _block_style_padding($breakpoint);
       $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_left']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_left'] : 'default';
@@ -87,9 +93,13 @@ function bt_cbc_form_block_form_alter(&$form, FormStateInterface $form_state, $f
       $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_right']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_right'] : 'default';
       $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_bottom']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_bottom'] : 'default';
 
-      // Block Align.
-      $form['third_party_settings']['bt_cbc']['block_align'][$prefix] = _block_style_align($breakpoint);
-      $form['third_party_settings']['bt_cbc']['block_align'][$prefix]['block_align']['#default_value'] = $block_align_default_value ? $block_align_default_value[$prefix]['block_align'] : 'default';
+      // Align.
+      $form['third_party_settings']['bt_cbc']['align'][$prefix] = _block_style_align($breakpoint);
+      $form['third_party_settings']['bt_cbc']['align'][$prefix]['align']['#default_value'] = $align_default_value ? $align_default_value[$prefix]['align'] : 'default';
+
+      // Justify.
+      $form['third_party_settings']['bt_cbc']['justify'][$prefix] = _block_style_justify($breakpoint);
+      $form['third_party_settings']['bt_cbc']['justify'][$prefix]['justify']['#default_value'] = $justify_default_value ? $justify_default_value[$prefix]['justify'] : 'default';
 
       // Text Align.
       $form['third_party_settings']['bt_cbc']['text_align'][$prefix] = _block_style_text_align($breakpoint);
@@ -164,6 +174,10 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
   ];
 
   foreach ($screens as $prefix => $breakpoint) {
+    // Max width.
+    $form['third_party_settings']['bt_cbc']['max_width'][$prefix] = _block_style_max_width($breakpoint);
+    $form['third_party_settings']['bt_cbc']['max_width'][$prefix]['max_width']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_max_width');
+
     // Padding.
     $form['third_party_settings']['bt_cbc']['padding'][$prefix] = _block_style_padding($breakpoint);
     $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_left']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_padding_left');
@@ -171,9 +185,13 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
     $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_right']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_padding_right');
     $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_bottom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_padding_bottom');
 
-    // Block Align.
-    $form['third_party_settings']['bt_cbc']['block_align'][$prefix] = _block_style_align($breakpoint);
-    $form['third_party_settings']['bt_cbc']['block_align'][$prefix]['block_align']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_block_align');
+    // Align.
+    $form['third_party_settings']['bt_cbc']['align'][$prefix] = _block_style_align($breakpoint);
+    $form['third_party_settings']['bt_cbc']['align'][$prefix]['align']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_align');
+
+    // Justify.
+    $form['third_party_settings']['bt_cbc']['justify'][$prefix] = _block_style_align($breakpoint);
+    $form['third_party_settings']['bt_cbc']['justify'][$prefix]['align']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_justify');
 
     // Text Align.
     $form['third_party_settings']['bt_cbc']['text_align'][$prefix] = _block_style_text_align($breakpoint);
@@ -276,6 +294,16 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
   }
 
   foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    // Max width.
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'max_width',
+      $prefix,
+      'max_width',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+
     // Padding.
     $get_value = [
       'third_party_settings',
@@ -310,6 +338,26 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     ];
     _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
 
+    // Align.
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'align',
+      $prefix,
+      'align',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+
+    // Justify.
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'justify',
+      $prefix,
+      'justify',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+
     // Text Align.
     $get_value = [
       'third_party_settings',
@@ -317,16 +365,6 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
       'text_align',
       $prefix,
       'text_align',
-    ];
-    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
-
-    // Block Align.
-    $get_value = [
-      'third_party_settings',
-      'bt_cbc',
-      'block_align',
-      $prefix,
-      'block_align',
     ];
     _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
   }
@@ -411,6 +449,14 @@ function bt_cbc_preprocess_block(&$variables) {
         $variables['configuration']['block_style']['background_' . $setting] = $value;
       }
     }
+    // Max width.
+    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'max_width')) {
+      foreach ($settings as $prefix => $settings) {
+        foreach ($settings as $setting => $value) {
+          $variables['configuration']['block_style'][$prefix . '_' . $setting] = $value;
+        }
+      }
+    }
     // Padding.
     if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'padding')) {
       foreach ($settings as $prefix => $settings) {
@@ -419,8 +465,16 @@ function bt_cbc_preprocess_block(&$variables) {
         }
       }
     }
-    // Block Align.
-    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'block_align')) {
+    // Align.
+    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'align')) {
+      foreach ($settings as $prefix => $settings) {
+        foreach ($settings as $setting => $value) {
+          $variables['configuration']['block_style'][$prefix . '_' . $setting] = $value;
+        }
+      }
+    }
+    // Justify.
+    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'justify')) {
       foreach ($settings as $prefix => $settings) {
         foreach ($settings as $setting => $value) {
           $variables['configuration']['block_style'][$prefix . '_' . $setting] = $value;

@@ -318,6 +318,14 @@ function _block_styles_form_base_builder() {
   // Classes.
   $block_styles_form['custom_classes'] = _custom_classes_form_element_builder();
 
+  // Max width.
+  $block_styles_form['max_width'] = [
+    '#type' => 'details',
+    '#title' => t('Max width'),
+    '#tree' => TRUE,
+    '#weight' => '59',
+  ];
+
   // Padding.
   $block_styles_form['padding'] = [
     '#type' => 'details',
@@ -326,12 +334,20 @@ function _block_styles_form_base_builder() {
     '#weight' => '60',
   ];
 
-  // Blog Align.
-  $block_styles_form['block_align'] = [
+  // Align.
+  $block_styles_form['align'] = [
     '#type' => 'details',
-    '#title' => t('Block Align'),
+    '#title' => t('Align'),
     '#tree' => TRUE,
     '#weight' => '70',
+  ];
+
+  // Justify.
+  $block_styles_form['justify'] = [
+    '#type' => 'details',
+    '#title' => t('Justify'),
+    '#tree' => TRUE,
+    '#weight' => '71',
   ];
 
   // Text Align.

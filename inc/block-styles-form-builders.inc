@@ -516,7 +516,7 @@ function _block_style_padding($breakpoint) {
 }
 
 /**
- * Return an block style form element configurations for block align element.
+ * Return an block style form element configurations for align element.
  */
 function _block_style_align($breakpoint) {
   $block_align = [
@@ -525,9 +525,9 @@ function _block_style_align($breakpoint) {
     '#tree' => TRUE,
   ];
 
-  $block_align['block_align'] = [
+  $block_align['align'] = [
     '#type' => 'select',
-    '#title' => t('Block align'),
+    '#title' => t('Align'),
     '#options' => [
       'default' => t('Default'),
       'stretch' => t('Stretch'),
@@ -535,7 +535,33 @@ function _block_style_align($breakpoint) {
       'center' => t('Center'),
       'end' => t('End'),
     ],
-    '#description' => t("Block's align"),
+    '#description' => t("Align"),
+  ];
+
+  return $block_align;
+}
+
+/**
+ * Return an block style form element configurations for justify element.
+ */
+function _block_style_justify($breakpoint) {
+  $block_align = [
+    '#type' => 'details',
+    '#title' => $breakpoint,
+    '#tree' => TRUE,
+  ];
+
+  $block_align['justify'] = [
+    '#type' => 'select',
+    '#title' => t('Justify'),
+    '#options' => [
+      'default' => t('Default'),
+      'stretch' => t('Stretch'),
+      'start' => t('Start'),
+      'center' => t('Center'),
+      'end' => t('End'),
+    ],
+    '#description' => t("Justify"),
   ];
 
   return $block_align;
@@ -577,6 +603,24 @@ function _block_style_font_size($breakpoint) {
   $font_size['font_size'] = [
     '#type' => 'textfield',
     '#title' => t('Font size.'),
+    '#maxlength' => '7',
+  ];
+
+  return $font_size;
+}
+
+/**
+ * Return an block style form element configurations for max_width element.
+ */
+function _block_style_max_width($breakpoint) {
+  $font_size = [
+    '#type' => 'details',
+    '#title' => $breakpoint,
+    '#tree' => TRUE,
+  ];
+  $font_size['max_width'] = [
+    '#type' => 'textfield',
+    '#title' => t('Max width.'),
     '#maxlength' => '7',
   ];
 

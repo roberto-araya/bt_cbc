@@ -190,8 +190,8 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
     $form['third_party_settings']['bt_cbc']['align'][$prefix]['align']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_align');
 
     // Justify.
-    $form['third_party_settings']['bt_cbc']['justify'][$prefix] = _block_style_align($breakpoint);
-    $form['third_party_settings']['bt_cbc']['justify'][$prefix]['align']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_justify');
+    $form['third_party_settings']['bt_cbc']['justify'][$prefix] = _block_style_justify($breakpoint);
+    $form['third_party_settings']['bt_cbc']['justify'][$prefix]['justify']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_justify');
 
     // Text Align.
     $form['third_party_settings']['bt_cbc']['text_align'][$prefix] = _block_style_text_align($breakpoint);

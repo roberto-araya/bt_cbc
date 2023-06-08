@@ -474,44 +474,32 @@ function _block_style_font_family() {
  */
 
 /**
- * Return an block style form element configurations for padding elements.
+ * Return a block style form element configurations for margin and padding.
  */
-function _block_style_padding($breakpoint) {
-  $padding = [
+function _block_style_margin_padding($breakpoint, $type) {
+  $return = [
     '#type' => 'details',
     '#title' => $breakpoint,
     '#tree' => TRUE,
   ];
 
-  $padding['padding_left'] = [
-    '#type' => 'select',
-    '#title' => t('Padding left'),
-    '#options' => _get_size_options(),
-    '#description' => t("Block's padding left"),
+  $sides = [
+    'left' => t('Left'),
+    'top' => t('Top'),
+    'right' => t('Right'),
+    'bottom' => t('Bottom'),
   ];
 
-  $padding['padding_top'] = [
-    '#type' => 'select',
-    '#title' => t('Padding top'),
-    '#options' => _get_size_options(),
-    '#description' => t("Block's padding top"),
-  ];
+  foreach ($sides as $side => $title) {
+    $return[$type . '_' . $side] = [
+      '#type' => 'textfield',
+      '#title' => $title,
+      '#maxlength' => '6',
+      '#description' => t("Units: px, rem, vw. Examples: 2rem, 0.5vw"),
+    ];
+  }
 
-  $padding['padding_right'] = [
-    '#type' => 'select',
-    '#title' => t('Padding right'),
-    '#options' => _get_size_options(),
-    '#description' => t("Block's padding right"),
-  ];
-
-  $padding['padding_bottom'] = [
-    '#type' => 'select',
-    '#title' => t('Padding bottom'),
-    '#options' => _get_size_options(),
-    '#description' => t("Block's padding bottom"),
-  ];
-
-  return $padding;
+  return $return;
 
 }
 

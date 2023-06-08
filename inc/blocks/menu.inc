@@ -174,7 +174,7 @@ function _menu_block_style_layout_builder_form_builder(&$section_component) {
     $block_style['item']['font_size'][$prefix]['font_size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_font_size');
 
     // Padding.
-    $block_style['item']['padding'][$prefix] = _block_style_padding($breakpoint);
+    $block_style['item']['padding'][$prefix] = _block_style_margin_padding($breakpoint, 'padding');
     $block_style['item']['padding'][$prefix]['padding_left']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_left');
     $block_style['item']['padding'][$prefix]['padding_top']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_top');
     $block_style['item']['padding'][$prefix]['padding_right']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'item_' . $prefix . '_padding_right');
@@ -243,7 +243,7 @@ function _menu_block_style_block_layout_form_builder($block) {
     $block_style['item']['font_size'][$prefix]['font_size']['#default_value'] = $default_values ? $default_values['font_size'][$prefix]['font_size'] : '';
 
     // Padding.
-    $block_style['item']['padding'][$prefix] = _block_style_padding($breakpoint);
+    $block_style['item']['padding'][$prefix] = _block_style_margin_padding($breakpoint, 'padding');
     $block_style['item']['padding'][$prefix]['padding_left']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_left'] : '';
     $block_style['item']['padding'][$prefix]['padding_top']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_top'] : '';
     $block_style['item']['padding'][$prefix]['padding_right']['#default_value'] = $default_values ? $default_values['padding'][$prefix]['padding_right'] : '';

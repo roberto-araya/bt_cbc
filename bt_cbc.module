@@ -77,6 +77,7 @@ function bt_cbc_form_block_form_alter(&$form, FormStateInterface $form_state, $f
     ];
 
     $max_width_default_value = $block->getThirdPartySetting('bt_cbc', 'max_width');
+    $margin_default_values = $block->getThirdPartySetting('bt_cbc', 'margin');
     $padding_default_values = $block->getThirdPartySetting('bt_cbc', 'padding');
     $align_default_value = $block->getThirdPartySetting('bt_cbc', 'align');
     $justify_default_value = $block->getThirdPartySetting('bt_cbc', 'justify');
@@ -86,12 +87,19 @@ function bt_cbc_form_block_form_alter(&$form, FormStateInterface $form_state, $f
       $form['third_party_settings']['bt_cbc']['max_width'][$prefix] = _block_style_max_width($breakpoint);
       $form['third_party_settings']['bt_cbc']['max_width'][$prefix]['max_width']['#default_value'] = $max_width_default_value ? $max_width_default_value[$prefix]['max_width'] : 'default';
 
+      // Margin.
+      $form['third_party_settings']['bt_cbc']['margin'][$prefix] = _block_style_margin_padding($breakpoint, 'margin');
+      $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_left']['#default_value'] = $margin_default_values ? $margin_default_values[$prefix]['margin_left'] : '';
+      $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_top']['#default_value'] = $margin_default_values ? $margin_default_values[$prefix]['margin_top'] : '';
+      $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_right']['#default_value'] = $margin_default_values ? $margin_default_values[$prefix]['margin_right'] : '';
+      $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_bottom']['#default_value'] = $margin_default_values ? $margin_default_values[$prefix]['margin_bottom'] : '';
+
       // Padding.
-      $form['third_party_settings']['bt_cbc']['padding'][$prefix] = _block_style_padding($breakpoint);
-      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_left']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_left'] : 'default';
-      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_top']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_top'] : 'default';
-      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_right']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_right'] : 'default';
-      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_bottom']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_bottom'] : 'default';
+      $form['third_party_settings']['bt_cbc']['padding'][$prefix] = _block_style_margin_padding($breakpoint, 'padding');
+      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_left']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_left'] : '';
+      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_top']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_top'] : '';
+      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_right']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_right'] : '';
+      $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_bottom']['#default_value'] = $padding_default_values ? $padding_default_values[$prefix]['padding_bottom'] : '';
 
       // Align.
       $form['third_party_settings']['bt_cbc']['align'][$prefix] = _block_style_align($breakpoint);
@@ -178,8 +186,15 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
     $form['third_party_settings']['bt_cbc']['max_width'][$prefix] = _block_style_max_width($breakpoint);
     $form['third_party_settings']['bt_cbc']['max_width'][$prefix]['max_width']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_max_width');
 
+    // Margin.
+    $form['third_party_settings']['bt_cbc']['margin'][$prefix] = _block_style_margin_padding($breakpoint, 'margin');
+    $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_left']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_margin_left');
+    $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_top']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_margin_top');
+    $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_right']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_margin_right');
+    $form['third_party_settings']['bt_cbc']['margin'][$prefix]['margin_bottom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_margin_bottom');
+
     // Padding.
-    $form['third_party_settings']['bt_cbc']['padding'][$prefix] = _block_style_padding($breakpoint);
+    $form['third_party_settings']['bt_cbc']['padding'][$prefix] = _block_style_margin_padding($breakpoint, 'padding');
     $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_left']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_padding_left');
     $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_top']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_padding_top');
     $form['third_party_settings']['bt_cbc']['padding'][$prefix]['padding_right']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_padding_right');
@@ -301,6 +316,40 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
       'max_width',
       $prefix,
       'max_width',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+
+    // Margin.
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'margin',
+      $prefix,
+      'margin_left',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'margin',
+      $prefix,
+      'margin_top',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'margin',
+      $prefix,
+      'margin_right',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'margin',
+      $prefix,
+      'margin_bottom',
     ];
     _element_style_layout_builder_configure_block_submit($form_state, $section_component, $prefix, $get_value);
 
@@ -451,6 +500,14 @@ function bt_cbc_preprocess_block(&$variables) {
     }
     // Max width.
     if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'max_width')) {
+      foreach ($settings as $prefix => $settings) {
+        foreach ($settings as $setting => $value) {
+          $variables['configuration']['block_style'][$prefix . '_' . $setting] = $value;
+        }
+      }
+    }
+    // Margin.
+    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'margin')) {
       foreach ($settings as $prefix => $settings) {
         foreach ($settings as $setting => $value) {
           $variables['configuration']['block_style'][$prefix . '_' . $setting] = $value;

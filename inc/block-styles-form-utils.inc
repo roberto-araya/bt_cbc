@@ -326,6 +326,14 @@ function _block_styles_form_base_builder() {
     '#weight' => '59',
   ];
 
+  // Margin.
+  $block_styles_form['margin'] = [
+    '#type' => 'details',
+    '#title' => t('Margin'),
+    '#tree' => TRUE,
+    '#weight' => '60',
+  ];
+
   // Padding.
   $block_styles_form['padding'] = [
     '#type' => 'details',

@@ -16,6 +16,7 @@ include 'inc/blocks/bt_cb_highlighted_text_image.inc';
 include 'inc/blocks/bt_cb_highlighted_text.inc';
 include 'inc/blocks/bt_cb_quote.inc';
 include 'inc/blocks/bt_cb_section_title.inc';
+include 'inc/blocks/bt_cb_social_profiles.inc';
 include 'inc/blocks/bt_cb_testimonial.inc';
 include 'inc/blocks/bt_cb_text.inc';
 include 'inc/blocks/bt_cb_text_icon.inc';

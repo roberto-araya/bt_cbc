@@ -18,6 +18,7 @@ function _get_custom_styled_blocks() {
     'bt_cb_text_image',
     'bt_cb_quote',
     'bt_cb_section_title',
+    'bt_cb_social_profiles',
     'bt_cb_text',
     'bt_cb_title_icon',
     'bt_cb_title_image',

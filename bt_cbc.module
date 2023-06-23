@@ -30,9 +30,9 @@ include 'inc/blocks/menu.inc';
  * A description of what your module does.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\block\Entity\Block;
+use Drupal\Core\Entity\EntityFormInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_form_FORM_ID_form_alter().

@@ -2,8 +2,8 @@
 
 namespace Drupal\bt_cbc\EventSubscriber;
 
-use Drupal\layout_builder\LayoutBuilderEvents;
 use Drupal\layout_builder\Event\SectionComponentBuildRenderArrayEvent;
+use Drupal\layout_builder\LayoutBuilderEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

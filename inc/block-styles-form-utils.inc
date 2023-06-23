@@ -10,6 +10,7 @@
  */
 function _get_custom_styled_blocks() {
   $blocks = [
+    'bt_cb_contact_info',
     'bt_cb_cta',
     'bt_cb_hero',
     'bt_cb_highlighted_text_image',
@@ -26,7 +27,6 @@ function _get_custom_styled_blocks() {
     'branding_block',
   ];
   return $blocks;
-
 }
 
 /**

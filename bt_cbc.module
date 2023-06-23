@@ -453,25 +453,23 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name,
       }
     }
   }
-
   if ($sections) {
     foreach ($sections as $section) {
       if ($layout_id == $section->getLayoutId()) {
         $components = $section->getComponents();
-        break;
-      }
-    }
-    foreach ($variables['content'][$region_name] as $component_id => &$section_component) {
-      if ($component_id != '#attributes' &&
-      ($components && array_key_exists($component_id, $components))) {
-        $component = $components[$component_id];
-        $settings = $component->getThirdPartySettings('bt_cbc');
-        $section_component['#configuration']['block_style'] = $settings;
+        foreach ($variables['content'][$region_name] as $component_id => &$section_component) {
+          if ($component_id != '#attributes' &&
+          ($components && array_key_exists($component_id, $components))) {
+            $component = $components[$component_id];
+            $settings = $component->getThirdPartySettings('bt_cbc');
+            $section_component['#configuration']['block_style'] = $settings;
 
-        if (isset($settings['custom_classes'])) {
-          $classes = explode(' ', $settings['custom_classes']);
-          $existing_classes = $section_component['#attributes']['class'] ?? [];
-          $section_component['#attributes']['class'] = array_merge($existing_classes, $classes);
+            if (isset($settings['custom_classes'])) {
+              $classes = explode(' ', $settings['custom_classes']);
+              $existing_classes = $section_component['#attributes']['class'] ?? [];
+              $section_component['#attributes']['class'] = array_merge($existing_classes, $classes);
+            }
+          }
         }
       }
     }

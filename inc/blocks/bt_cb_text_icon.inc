@@ -20,7 +20,7 @@ function _bt_cb_text_icon_style_form_builder() {
 
   $block_style['icon']['size'] = [
     '#type' => 'textfield',
-    '#title' => $title,
+    '#title' => t('Size'),
     '#maxlength' => '6',
     '#description' => t("Unit: px. Examples: 32px, 48px"),
   ];

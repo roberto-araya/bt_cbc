@@ -13,7 +13,7 @@ function _bt_cb_social_profiles_style_form_builder() {
     'text' => _text_styles_form_element_builder(),
     'icon' => [
       '#type' => 'details',
-      '#title' => t('icon'),
+      '#title' => t('Icon'),
       '#tree' => TRUE,
       '#weight' => 10,
     ],

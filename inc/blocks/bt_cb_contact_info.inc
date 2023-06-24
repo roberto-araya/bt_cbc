@@ -13,8 +13,9 @@ function _bt_cb_contact_info_style_form_builder() {
     'text' => _text_styles_form_element_builder(),
     'link' => [
       '#type' => 'details',
+      '#title' => t('Link'),
       '#tree' => TRUE,
-      '#weight' => $n + 1,
+      '#weight' => 1,
     ],
   ];
   $colors = _block_style_color('link');

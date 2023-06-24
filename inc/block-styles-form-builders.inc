@@ -435,6 +435,55 @@ function _custom_classes_form_element_builder() {
  */
 
 /**
+ * Return an form section for color and opacity elements configurations.
+ */
+function _block_style_color_opacity($element) {
+  return [
+    'color_select' => [
+      '#type' => 'select',
+      '#options' => _get_theme_color_options(),
+      '#title' => t('Color'),
+      '#description' => t("Select a theme color or use a custom color."),
+    ],
+
+    'color_custom' => [
+      '#type' => 'color',
+      '#title' => t('Custom Color'),
+      '#description' => t("Click in the color to select a custom one."),
+      '#states' => [
+        'visible' => [
+          ':input[name="third_party_settings[bt_cbc][' . $element . '][color_select]"]' => ['value' => 'customColor'],
+        ],
+      ],
+    ],
+
+    'color_opacity' => [
+      '#type' => 'select',
+      '#options' => _get_opacity_options('decimal'),
+      '#title' => t('Color Opacity'),
+      '#description' => t("Select an opacity for color."),
+      '#states' => [
+        'invisible' => [
+          ':input[name="third_party_settings[bt_cbc][' . $element . '][color_select]"]' => ['value' => 'customColor'],
+        ],
+      ],
+    ],
+
+    'color_custom_opacity' => [
+      '#type' => 'select',
+      '#options' => _get_opacity_options('hexadecimal'),
+      '#title' => t('Color Opacity'),
+      '#description' => t("Select an opacity for color."),
+      '#states' => [
+        'visible' => [
+          ':input[name="third_party_settings[bt_cbc][' . $element . '][color_select]"]' => ['value' => 'customColor'],
+        ],
+      ],
+    ],
+  ];
+}
+
+/**
  * Return an form section for color element configurations.
  */
 function _block_style_color($element) {

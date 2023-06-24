@@ -44,7 +44,7 @@ function _get_screens_breakpoints() {
 }
 
 /**
- * Return an font select options.
+ * Return a font select options.
  */
 function _get_font_family_options() {
   $options = [
@@ -86,6 +86,62 @@ function _get_font_family_options() {
   ];
 
   return $options;
+}
+
+/**
+ * Return a color opacity select options.
+ */
+function _get_opacity_options($type) {
+  if ($type == 'hexadecimal') {
+    return [
+      'FF' => "100%",
+      'F2' => "95%",
+      'E6' => "90%",
+      'D9' => "85%",
+      'CC' => "80%",
+      'BF' => "75%",
+      'B3' => "70%",
+      'A6' => "65%",
+      '99' => "60%",
+      '8C' => "55%",
+      '80' => "50%",
+      '73' => "45%",
+      '66' => "40%",
+      '59' => "35%",
+      '4D' => "30%",
+      '40' => "25%",
+      '33' => "20%",
+      '26' => "15%",
+      '1A' => "10%",
+      '0D' => "5%",
+      '00' => "0%",
+    ];
+  }
+  elseif ($type == 'decimal') {
+    return [
+      '1.00' => "100%",
+      '0.95' => "95%",
+      '0.90' => "90%",
+      '0.85' => "85%",
+      '0.80' => "80%",
+      '0.75' => "75%",
+      '0.70' => "70%",
+      '0.65' => "65%",
+      '0.60' => "60%",
+      '0.55' => "55%",
+      '0.50' => "50%",
+      '0.45' => "45%",
+      '0.40' => "40%",
+      '0.35' => "35%",
+      '0.30' => "30%",
+      '0.25' => "25%",
+      '0.20' => "20%",
+      '0.15' => "15%",
+      '0.10' => "10%",
+      '0.05' => "5%",
+      '0.00' => "0%",
+    ];
+  }
 }
 
 /**
@@ -303,7 +359,7 @@ function _block_styles_form_base_builder() {
     '#weight' => '100',
   ];
 
-  $color = _block_style_color('background');
+  $color = _block_style_color_opacity('background');
   $block_styles_form['background'] = [
     '#type' => 'details',
     '#title' => t('Background Color'),
@@ -311,6 +367,8 @@ function _block_styles_form_base_builder() {
     '#weight' => '50',
     'color_select' => $color['color_select'],
     'color_custom' => $color['color_custom'],
+    'color_opacity' => $color['color_opacity'],
+    'color_custom_opacity' => $color['color_custom_opacity'],
   ];
 
   // Animation.

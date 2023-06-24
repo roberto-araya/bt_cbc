@@ -162,8 +162,8 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
   // Background.
   $form['third_party_settings']['bt_cbc']['background']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'background_color_select');
   $form['third_party_settings']['bt_cbc']['background']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'background_color_custom');
-  $form['third_party_settings']['bt_cbc']['background']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'background_color_opacity');
-  $form['third_party_settings']['bt_cbc']['background']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'background_color_custom_opacity');
+  $form['third_party_settings']['bt_cbc']['background']['color_opacity']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'background_color_opacity');
+  $form['third_party_settings']['bt_cbc']['background']['color_custom_opacity']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'background_color_custom_opacity');
 
   // Animation.
   $form['third_party_settings']['bt_cbc']['animation']['option']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'animation_option');
@@ -283,7 +283,8 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
 
   $get_value = [
     'third_party_settings',
-    'bt_cbc', 'background',
+    'bt_cbc',
+    'background',
     'color_custom_opacity',
   ];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'background', $get_value);

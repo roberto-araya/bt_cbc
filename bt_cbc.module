@@ -216,7 +216,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
     $form['third_party_settings']['bt_cbc']['text_align'][$prefix]['text_align']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', $prefix . '_text_align');
   }
 
-  $block_type = $section_component->getConfiguration()['id'];
+  $block_type = $section_component->get('configuration')['id'];
   $custom_styled_blocks = _get_custom_styled_blocks();
 
   if (str_contains($block_type, 'inline_block')) {
@@ -245,7 +245,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
 function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInterface $form_state) {
   /** @var \Drupal\layout_builder\SectionComponent $section_component */
   $section_component = $form_state->getFormObject()->getCurrentComponent();
-  $block_type = $section_component->getConfiguration()['id'];
+  $block_type = $section_component->get('configuration')['id'];
   $custom_styled_blocks = _get_custom_styled_blocks();
 
   if (str_contains($block_type, 'inline_block')) {

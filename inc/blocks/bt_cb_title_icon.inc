@@ -23,7 +23,7 @@ function _bt_cb_title_icon_style_form_builder() {
       '#title' => t('Size'),
       '#tree' => TRUE,
       '#weight' => 10,
-    ]
+    ],
   ];
 
   $colors = _block_style_color('icon');

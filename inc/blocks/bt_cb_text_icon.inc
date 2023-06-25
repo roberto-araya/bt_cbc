@@ -20,7 +20,7 @@ function _bt_cb_text_icon_style_form_builder() {
       '#title' => t('Size'),
       '#tree' => TRUE,
       '#weight' => 10,
-    ]
+    ],
   ];
 
   $colors = _block_style_color('icon');
@@ -82,7 +82,7 @@ function _bt_cb_text_icon_style_layout_builder_form_submit($form_state, $section
 
   $get_value = ['third_party_settings', 'bt_cbc', 'icon', 'color_custom'];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'icon', $get_value);
-  
+
   // Icon size.
   foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     $get_value = [

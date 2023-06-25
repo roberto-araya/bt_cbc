@@ -680,16 +680,34 @@ function _block_style_font_size($breakpoint) {
  * Return an block style form element configurations for max_width element.
  */
 function _block_style_max_width($breakpoint) {
-  $font_size = [
+  $max_width = [
     '#type' => 'details',
     '#title' => $breakpoint,
     '#tree' => TRUE,
   ];
-  $font_size['max_width'] = [
+  $max_width['max_width'] = [
     '#type' => 'textfield',
     '#title' => t('Max width.'),
     '#maxlength' => '7',
   ];
 
-  return $font_size;
+  return $max_width;
+}
+
+/**
+ * Return an block style form element configurations for icon size element.
+ */
+function _block_style_icon_size($breakpoint) {
+  $icon_size = [
+    '#type' => 'details',
+    '#title' => $breakpoint,
+    '#tree' => TRUE,
+  ];
+  $icon_size['size'] = [
+    '#type' => 'textfield',
+    '#title' => t('Size'),
+    '#maxlength' => '6',
+  ];
+
+  return $icon_size;
 }

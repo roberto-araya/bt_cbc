@@ -15,14 +15,12 @@ function _bt_cb_text_icon_style_form_builder() {
     '#title' => t('Icon'),
     '#tree' => TRUE,
     '#weight' => 10,
-  ];
-  $block_style['icon']['#weight'] = '10';
-
-  $block_style['icon']['size'] = [
-    '#type' => 'textfield',
-    '#title' => t('Size'),
-    '#maxlength' => '6',
-    '#description' => t("Unit: px. Examples: 32px, 48px"),
+    'size' => [
+      '#type' => 'details',
+      '#title' => t('Size'),
+      '#tree' => TRUE,
+      '#weight' => 10,
+    ]
   ];
 
   $colors = _block_style_color('icon');
@@ -42,7 +40,12 @@ function _bt_cb_text_icon_style_layout_builder_form_builder(&$section_component)
   $block_style = _buttons_style_layout_builder_form_builder($section_component, $block_style, FALSE);
   $block_style['icon']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'icon_color_select');
   $block_style['icon']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'icon_color_custom');
-  $block_style['icon']['size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'icon_size');
+
+  $screens = _get_screens_breakpoints();
+  foreach ($screens as $prefix => $breakpoint) {
+    $block_style['icon']['size'][$prefix] = _block_style_icon_size($breakpoint);
+    $block_style['icon']['size'][$prefix]['size']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'icon_' . $prefix . '_size');
+  }
 
   return $block_style;
 }
@@ -57,7 +60,12 @@ function _bt_cb_text_icon_style_block_layout_form_builder($block) {
   $default_values = $block->getThirdPartySetting('bt_cbc', 'icon');
   $block_style['icon']['color_select']['#default_value'] = $default_values ? $default_values['color_select'] : '';
   $block_style['icon']['color_custom']['#default_value'] = $default_values ? $default_values['color_custom'] : '';
-  $block_style['icon']['size']['#default_value'] = $default_values ? $default_values['size'] : '';
+
+  $screens = _get_screens_breakpoints();
+  foreach ($screens as $prefix => $breakpoint) {
+    $block_style['icon']['size'][$prefix] = _block_style_icon_size($breakpoint);
+    $block_style['icon']['size'][$prefix]['size']['#default_value'] = $default_values ? $default_values['size'][$prefix]['size'] : '';
+  }
 
   return $block_style;
 }
@@ -74,9 +82,20 @@ function _bt_cb_text_icon_style_layout_builder_form_submit($form_state, $section
 
   $get_value = ['third_party_settings', 'bt_cbc', 'icon', 'color_custom'];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'icon', $get_value);
+  
+  // Icon size.
+  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    $get_value = [
+      'third_party_settings',
+      'bt_cbc',
+      'icon',
+      'size',
+      $prefix,
+      'size',
+    ];
+    _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'icon_' . $prefix, $get_value);
+  }
 
-  $get_value = ['third_party_settings', 'bt_cbc', 'icon', 'size'];
-  _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'icon', $get_value);
 }
 
 /**
@@ -91,9 +110,16 @@ function _bt_cb_text_icon_styles_block_preprocess($block, &$variables) {
   _tct_styles_block_preprocess($block, $variables, 'text');
   // Icon.
   if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'icon')) {
-    $variables['configuration']['block_style']['icon_color_select'] = $settings['color_select'];
-    $variables['configuration']['block_style']['icon_color_custom'] = $settings['color_custom'];
-    $variables['configuration']['block_style']['icon_size'] = $settings['size'];
+    foreach ($settings as $setting => $value) {
+      if ($setting == 'size') {
+        foreach ($value as $prefix => $val) {
+          $variables['configuration']['block_style'][$element . '_' . $prefix . '_' . $setting] = $val['size'];
+        }
+      }
+      else {
+        $variables['configuration']['block_style'][$element . '_' . $setting] = $value;
+      }
+    }
   }
   // Buttons.
   _buttons_styles_block_preprocess($block, $variables);

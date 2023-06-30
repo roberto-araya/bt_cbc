@@ -688,7 +688,7 @@ function _block_style_max_width($breakpoint) {
   $max_width['max_width'] = [
     '#type' => 'textfield',
     '#title' => t('Max width.'),
-    '#maxlength' => '7',
+    '#maxlength' => '15',
   ];
 
   return $max_width;

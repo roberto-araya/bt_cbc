@@ -90,7 +90,7 @@ function bt_cbc_form_block_form_alter(&$form, FormStateInterface $form_state, $f
     foreach ($screens as $prefix => $breakpoint) {
       // Max width.
       $form['third_party_settings']['bt_cbc']['max_width'][$prefix] = _block_style_max_width($breakpoint);
-      $form['third_party_settings']['bt_cbc']['max_width'][$prefix]['max_width']['#default_value'] = $max_width_default_value ? $max_width_default_value[$prefix]['max_width'] : 'default';
+      $form['third_party_settings']['bt_cbc']['max_width'][$prefix]['max_width']['#default_value'] = $max_width_default_value ? $max_width_default_value[$prefix]['max_width'] : '';
 
       // Margin.
       $form['third_party_settings']['bt_cbc']['margin'][$prefix] = _block_style_margin_padding($breakpoint, 'margin');

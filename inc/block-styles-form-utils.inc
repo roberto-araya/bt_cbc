@@ -24,6 +24,7 @@ function _get_custom_styled_blocks() {
     'bt_cb_title_image',
     'bt_cb_testimonial',
     'bt_cb_highlighted_text',
+    'bt_image_link',
     'menu_block',
     'branding_block',
   ];

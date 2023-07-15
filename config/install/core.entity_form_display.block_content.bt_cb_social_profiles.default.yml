@@ -5,14 +5,19 @@ dependencies:
     - block_content.type.bt_cb_social_profiles
     - field.field.block_content.bt_cb_social_profiles.field_bt_blq_desc
     - field.field.block_content.bt_cb_social_profiles.field_bt_blq_title
+    - field.field.block_content.bt_cb_social_profiles.field_bt_facebook_icon
+    - field.field.block_content.bt_cb_social_profiles.field_bt_instagram_icon
     - field.field.block_content.bt_cb_social_profiles.field_bt_link_facebook
     - field.field.block_content.bt_cb_social_profiles.field_bt_link_google_plus
     - field.field.block_content.bt_cb_social_profiles.field_bt_link_instagram
     - field.field.block_content.bt_cb_social_profiles.field_bt_link_linkedin
     - field.field.block_content.bt_cb_social_profiles.field_bt_link_twitter
+    - field.field.block_content.bt_cb_social_profiles.field_bt_linkedin_icon
+    - field.field.block_content.bt_cb_social_profiles.field_bt_twitter_icon
   module:
     - field_group
     - link
+    - svg_icon
 third_party_settings:
   field_group:
     group_block:
@@ -20,102 +25,129 @@ third_party_settings:
         - info
         - field_bt_blq_desc
         - field_bt_blq_title
+      label: Bloque
+      region: content
       parent_name: ''
       weight: 1
       format_type: fieldset
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: false
-      label: Block
-      region: content
     group_redes_sociales:
       children:
         - field_bt_link_facebook
+        - field_bt_facebook_icon
         - field_bt_link_twitter
-        - field_bt_link_google_plus
+        - field_bt_twitter_icon
         - field_bt_link_instagram
+        - field_bt_instagram_icon
         - field_bt_link_linkedin
+        - field_bt_linkedin_icon
+      label: 'Redes Sociales'
+      region: content
       parent_name: ''
       weight: 2
       format_type: fieldset
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: false
-      label: 'Social Networks'
-      region: content
 id: block_content.bt_cb_social_profiles.default
 targetEntityType: block_content
 bundle: bt_cb_social_profiles
 mode: default
 content:
   field_bt_blq_desc:
+    type: string_textfield
     weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_bt_blq_title:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+  field_bt_facebook_icon:
+    type: svg_icon_widget
+    weight: 5
     region: content
+    settings:
+      progress_indicator: throbber
+      allow_existing: true
+    third_party_settings: {  }
+  field_bt_instagram_icon:
+    type: svg_icon_widget
+    weight: 10
+    region: content
+    settings:
+      progress_indicator: throbber
+      allow_existing: true
+    third_party_settings: {  }
   field_bt_link_facebook:
+    type: link_default
     weight: 4
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
-  field_bt_link_google_plus:
-    weight: 7
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   field_bt_link_instagram:
-    weight: 8
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
     type: link_default
-    region: content
-  field_bt_link_linkedin:
     weight: 9
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_bt_link_linkedin:
     type: link_default
+    weight: 11
     region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_bt_link_twitter:
+    type: link_default
     weight: 6
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
+  field_bt_linkedin_icon:
+    type: svg_icon_widget
+    weight: 12
     region: content
+    settings:
+      progress_indicator: throbber
+      allow_existing: true
+    third_party_settings: {  }
+  field_bt_twitter_icon:
+    type: svg_icon_widget
+    weight: 7
+    region: content
+    settings:
+      progress_indicator: throbber
+      allow_existing: true
+    third_party_settings: {  }
   info:
     type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   langcode:
     type: language_select
     weight: 0
@@ -128,4 +160,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_bt_link_google_plus: true
+

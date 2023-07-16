@@ -87,8 +87,6 @@ function _bt_cb_social_profiles_style_block_layout_form_builder($block) {
     $block_style['icon']['size'][$prefix]['size']['#default_value'] = $icon_default_values ? $icon_default_values['size'][$prefix]['size'] : '';
   }
 
-
-
   return $block_style;
 }
 
@@ -134,7 +132,11 @@ function _bt_cb_social_profiles_style_layout_builder_form_submit($form_state, $s
   $get_value = ['third_party_settings', 'bt_cbc', 'icon', 'color_opacity'];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'icon', $get_value);
 
-  $get_value = ['third_party_settings', 'bt_cbc', 'icon', 'color_custom_opacity'];
+  $get_value = [
+    'third_party_settings',
+    'bt_cbc', 'icon',
+    'color_custom_opacity',
+  ];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'icon', $get_value);
 }
 

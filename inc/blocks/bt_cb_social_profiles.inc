@@ -98,7 +98,7 @@ function _bt_cb_social_profiles_style_layout_builder_form_submit($form_state, $s
   _text_styles_layout_builder_form_element_sumbit($form_state, $section_component);
 
   // Font size.
-  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+  foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     // Text Font Size.
     $get_value = [
       'third_party_settings',

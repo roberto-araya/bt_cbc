@@ -169,7 +169,7 @@ function branding_block_style_layout_builder_form_submit($form_state, $section_c
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'slogan', $get_value);
 
   // Font size.
-  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+  foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     // Name font size.
     $get_value = [
       'third_party_settings',
@@ -216,7 +216,7 @@ function _branding_block_styles_block_preprocess($block, &$variables) {
     $variables['configuration']['block_style']['name_font_family'] = $settings['font_family'];
 
     // Name font size.
-    foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
       $variables['configuration']['block_style']['name_' . $prefix . '_font_size'] = $settings['font_size'][$prefix]['font_size'];
     }
   }
@@ -228,7 +228,7 @@ function _branding_block_styles_block_preprocess($block, &$variables) {
     $variables['configuration']['block_style']['slogan_font_family'] = $settings['font_family'];
 
     // Name font size.
-    foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
       $variables['configuration']['block_style']['slogan_' . $prefix . '_font_size'] = $settings['font_size'][$prefix]['font_size'];
     }
   }

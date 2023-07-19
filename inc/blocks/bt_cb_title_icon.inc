@@ -109,7 +109,7 @@ function _bt_cb_title_icon_style_layout_builder_form_submit($form_state, $sectio
   // caption.
   _caption_styles_layout_builder_form_element_sumbit($form_state, $section_component);
 
-  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+  foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     // Title Font Size.
     $get_value = [
       'third_party_settings',

@@ -86,7 +86,7 @@ function _bt_cb_contact_info_style_layout_builder_form_submit($form_state, $sect
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
 
   // Font size.
-  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+  foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     // Text Font Size.
     $get_value = [
       'third_party_settings',

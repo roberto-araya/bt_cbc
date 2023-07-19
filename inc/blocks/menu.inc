@@ -365,7 +365,7 @@ function _menu_block_style_layout_builder_form_submit($form_state, $section_comp
   }
 
   // Font size and padding.
-  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+  foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     // Title Font Size.
     $get_value = [
       'third_party_settings',
@@ -441,7 +441,7 @@ function _menu_block_styles_block_preprocess($block, &$variables) {
     $variables['configuration']['block_style']['title_color_custom'] = $settings['color_custom'];
 
     // Title font size.
-    foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
       $variables['configuration']['block_style']['title_' . $prefix . '_font_size'] = $settings['font_size'][$prefix]['font_size'];
     }
   }
@@ -478,7 +478,7 @@ function _menu_block_styles_block_preprocess($block, &$variables) {
     $variables['configuration']['block_style']['item_background_hover_color_custom'] = $settings['background']['hover']['color_custom'];
 
     // Item font size and padding.
-    foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+    foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
       // Item font size.
       $variables['configuration']['block_style']['item_' . $prefix . '_font_size'] = $settings['font_size'][$prefix]['font_size'];
 

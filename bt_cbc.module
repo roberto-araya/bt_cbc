@@ -75,6 +75,7 @@ function bt_cbc_form_block_form_alter(&$form, FormStateInterface $form_state, $f
 
     // Breakpoint styles.
     $screens = [
+      'xs' => t('max-width: 575px'),
       'sm' => t('min-width: 576px'),
       'md' => t('min-width: 768px'),
       'lg' => t('min-width: 992px'),
@@ -182,6 +183,7 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
 
   // Breakpoint styles.
   $screens = [
+    'xs' => t('max-width: 575px'),
     'sm' => t('min-width: 576px'),
     'md' => t('min-width: 768px'),
     'lg' => t('min-width: 992px'),
@@ -327,7 +329,7 @@ function bt_cbc_form_layout_builder_configure_block_submit($form, FormStateInter
     $section_component->unsetThirdPartySetting('bt_cbc', 'custom_classes');
   }
 
-  foreach (['sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
+  foreach (['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as $prefix) {
     // Max width.
     $get_value = [
       'third_party_settings',

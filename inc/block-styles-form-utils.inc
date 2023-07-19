@@ -36,6 +36,7 @@ function _get_custom_styled_blocks() {
  */
 function _get_screens_breakpoints() {
   return [
+    'xs' => t('max-width: 575px'),
     'sm' => t('min-width: 576px'),
     'md' => t('min-width: 768px'),
     'lg' => t('min-width: 992px'),

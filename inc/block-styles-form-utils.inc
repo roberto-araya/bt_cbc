@@ -27,6 +27,7 @@ function _get_custom_styled_blocks() {
     'bt_image_link',
     'menu_block',
     'branding_block',
+    'page_title_block',
   ];
   return $blocks;
 }

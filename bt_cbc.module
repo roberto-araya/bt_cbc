@@ -25,6 +25,7 @@ include 'inc/blocks/bt_cb_text_image.inc';
 include 'inc/blocks/bt_cb_title_icon.inc';
 include 'inc/blocks/bt_cb_title_image.inc';
 include 'inc/blocks/menu.inc';
+include 'inc/blocks/page_title_block.inc';
 
 /**
  * @file

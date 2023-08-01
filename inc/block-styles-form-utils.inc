@@ -30,6 +30,7 @@ function _get_custom_styled_blocks() {
     'page_title_block',
     'commerce_cart',
     'system_breadcrumb_block',
+    'text_fields_block',
   ];
   return $blocks;
 }

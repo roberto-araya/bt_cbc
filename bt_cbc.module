@@ -28,6 +28,7 @@ include 'inc/blocks/menu.inc';
 include 'inc/blocks/page_title_block.inc';
 include 'inc/blocks/commerce_cart.inc';
 include 'inc/blocks/system_breadcrumb_block.inc';
+include 'inc/blocks/text_fields_block.inc';
 
 /**
  * @file
@@ -232,6 +233,12 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
   if (str_contains($block_type, ':title')) {
     $block = $form['settings']['block_form']['#block'];
     $block_type = 'page_title_block';
+  }
+
+  if (str_contains($block_type, ':field_bt_title_foot') ||
+  str_contains($block_type, ':field_bt_intro')) {
+    $block = $form['settings']['block_form']['#block'];
+    $block_type = 'text_fields_block';
   }
 
   if (str_contains($block_type, 'inline_block')) {

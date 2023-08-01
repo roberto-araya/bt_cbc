@@ -80,5 +80,5 @@ function _page_title_block_style_layout_builder_form_submit($form_state, $sectio
  */
 function _page_title_block_styles_block_preprocess($block, &$variables) {
   // Title.
-  _tct_styles_block_preprocess($block, $variables, 'title'); 
+  _tct_styles_block_preprocess($block, $variables, 'title');
 }

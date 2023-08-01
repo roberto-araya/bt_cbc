@@ -227,6 +227,11 @@ function bt_cbc_form_layout_builder_configure_block_alter(&$form, FormStateInter
   $block_type = $section_component->get('configuration')['id'];
   $custom_styled_blocks = _get_custom_styled_blocks();
 
+  if (str_contains($block_type, ':title')) {
+    $block = $form['settings']['block_form']['#block'];
+    $block_type = 'page_title_block';
+  }
+
   if (str_contains($block_type, 'inline_block')) {
     $block = $form['settings']['block_form']['#block'];
     $block_type = $block->bundle();

@@ -29,6 +29,7 @@ function _get_custom_styled_blocks() {
     'branding_block',
     'page_title_block',
     'commerce_cart',
+    'system_breadcrumb_block',
   ];
   return $blocks;
 }

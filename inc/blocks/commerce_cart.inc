@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Block style for commerce_cart_block.
+ * Block style for commerce_cart.
  */
 
 /**
- * Module commerce_cart_block standard.
+ * Module commerce_cart standard.
  */
-function _commerce_cart_block_style_form_builder() {
+function _commerce_cart_style_form_builder() {
   $block_style = [
     'text' => _text_styles_form_element_builder(),
   ];
@@ -16,10 +16,10 @@ function _commerce_cart_block_style_form_builder() {
 }
 
 /**
- * Module commerce_cart_block layout builder.
+ * Module commerce_cart layout builder.
  */
-function _commerce_cart_block_style_layout_builder_form_builder(&$section_component) {
-  $block_style = _commerce_cart_block_style_form_builder();
+function _commerce_cart_style_layout_builder_form_builder(&$section_component) {
+  $block_style = _commerce_cart_style_form_builder();
 
   $block_style['text']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'text_color_select');
   $block_style['text']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'text_color_custom');
@@ -36,10 +36,10 @@ function _commerce_cart_block_style_layout_builder_form_builder(&$section_compon
 }
 
 /**
- * Module commerce_cart_block block layout.
+ * Module commerce_cart block layout.
  */
-function _commerce_cart_block_style_block_layout_form_builder($block) {
-  $block_style = _commerce_cart_block_style_form_builder();
+function _commerce_cart_style_block_layout_form_builder($block) {
+  $block_style = _commerce_cart_style_form_builder();
 
   $text_default_values = $block->getThirdPartySetting('bt_cbc', 'text');
   $block_style['text']['color_select']['#default_value'] = $text_default_values ? $text_default_values['color_select'] : '';
@@ -56,9 +56,9 @@ function _commerce_cart_block_style_block_layout_form_builder($block) {
 }
 
 /**
- * Module commerce_cart_block layout builder sumbit.
+ * Module commerce_cart layout builder sumbit.
  */
-function _commerce_cart_block_style_layout_builder_form_submit($form_state, $section_component) {
+function _commerce_cart_style_layout_builder_form_submit($form_state, $section_component) {
   // Text.
   _text_styles_layout_builder_form_element_sumbit($form_state, $section_component);
 
@@ -78,9 +78,9 @@ function _commerce_cart_block_style_layout_builder_form_submit($form_state, $sec
 }
 
 /**
- * Preprocess for commerce_cart_block blocks.
+ * Preprocess for commerce_cart blocks.
  */
-function _commerce_cart_block_styles_block_preprocess($block, &$variables) {
+function _commerce_cart_styles_block_preprocess($block, &$variables) {
   // Text.
   _tct_styles_block_preprocess($block, $variables, 'text');
 }

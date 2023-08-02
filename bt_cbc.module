@@ -27,7 +27,7 @@ include 'inc/blocks/bt_cb_title_image.inc';
 include 'inc/blocks/menu.inc';
 include 'inc/blocks/page_title_block.inc';
 include 'inc/blocks/commerce_cart.inc';
-include 'inc/blocks/system_breadcrumb_block.inc';
+include 'inc/blocks/breadcrumb_block.inc';
 include 'inc/blocks/text_fields_block.inc';
 
 /**

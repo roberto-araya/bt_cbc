@@ -53,8 +53,6 @@ function _system_breadcrumb_block_style_layout_builder_form_builder(&$section_co
   $block_style['link']['hover']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'link_hover_color_select');
   $block_style['link']['hover']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'link_hover_color_custom');
 
-  $screens = _get_screens_breakpoints();
-
   return $block_style;
 }
 
@@ -85,10 +83,22 @@ function _system_breadcrumb_block_style_layout_builder_form_submit($form_state, 
   $get_value = ['third_party_settings', 'bt_cbc', 'link', 'color_custom'];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
 
-  $get_value = ['third_party_settings', 'bt_cbc', 'link', 'hover', 'color_select'];
+  $get_value = [
+    'third_party_settings',
+    'bt_cbc',
+    'link',
+    'hover',
+    'color_select'
+  ];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
 
-  $get_value = ['third_party_settings', 'bt_cbc', 'link', 'hover', 'color_custom'];
+  $get_value = [
+    'third_party_settings',
+    'bt_cbc',
+    'link',
+    'hover',
+    'color_custom'
+  ];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
 }
 

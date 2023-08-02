@@ -88,7 +88,7 @@ function _system_breadcrumb_block_style_layout_builder_form_submit($form_state, 
     'bt_cbc',
     'link',
     'hover',
-    'color_select'
+    'color_select',
   ];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
 
@@ -97,7 +97,7 @@ function _system_breadcrumb_block_style_layout_builder_form_submit($form_state, 
     'bt_cbc',
     'link',
     'hover',
-    'color_custom'
+    'color_custom',
   ];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
 }

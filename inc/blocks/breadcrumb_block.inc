@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Block style for system_breadcrumb_block.
+ * Block style for breadcrumb_block.
  */
 
 /**
- * Module system_breadcrumb_block standard.
+ * Module breadcrumb_block standard.
  */
-function _system_breadcrumb_block_style_form_builder() {
+function _breadcrumb_block_style_form_builder() {
   $block_style = [
     'link' => [
       '#type' => 'details',
@@ -43,10 +43,10 @@ function _system_breadcrumb_block_style_form_builder() {
 }
 
 /**
- * Module system_breadcrumb_block layout builder.
+ * Module breadcrumb_block layout builder.
  */
-function _system_breadcrumb_block_style_layout_builder_form_builder(&$section_component) {
-  $block_style = _system_breadcrumb_block_style_form_builder();
+function _breadcrumb_block_style_layout_builder_form_builder(&$section_component) {
+  $block_style = _breadcrumb_block_style_form_builder();
 
   $block_style['link']['color_select']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'link_color_select');
   $block_style['link']['color_custom']['#default_value'] = $section_component->getThirdPartySetting('bt_cbc', 'link_color_custom');
@@ -57,10 +57,10 @@ function _system_breadcrumb_block_style_layout_builder_form_builder(&$section_co
 }
 
 /**
- * Module system_breadcrumb_block block layout.
+ * Module breadcrumb_block block layout.
  */
-function _system_breadcrumb_block_style_block_layout_form_builder($block) {
-  $block_style = _system_breadcrumb_block_style_form_builder();
+function _breadcrumb_block_style_block_layout_form_builder($block) {
+  $block_style = _breadcrumb_block_style_form_builder();
 
   $link_default_values = $block->getThirdPartySetting('bt_cbc', 'link');
   $block_style['link']['color_select']['#default_value'] = $link_default_values ? $link_default_values['color_select'] : '';
@@ -73,9 +73,9 @@ function _system_breadcrumb_block_style_block_layout_form_builder($block) {
 }
 
 /**
- * Module system_breadcrumb_block layout builder sumbit.
+ * Module breadcrumb_block layout builder sumbit.
  */
-function _system_breadcrumb_block_style_layout_builder_form_submit($form_state, $section_component) {
+function _breadcrumb_block_style_layout_builder_form_submit($form_state, $section_component) {
   // Link color.
   $get_value = ['third_party_settings', 'bt_cbc', 'link', 'color_select'];
   _element_style_layout_builder_configure_block_submit($form_state, $section_component, 'link', $get_value);
@@ -103,9 +103,9 @@ function _system_breadcrumb_block_style_layout_builder_form_submit($form_state, 
 }
 
 /**
- * Preprocess for system_breadcrumb_block blocks.
+ * Preprocess for breadcrumb_block blocks.
  */
-function _system_breadcrumb_block_styles_block_preprocess($block, &$variables) {
+function _breadcrumb_block_styles_block_preprocess($block, &$variables) {
   // Link.
   $variables['configuration']['block_style']['link_color_select'] = $settings['color_select'];
   $variables['configuration']['block_style']['link_color_custom'] = $settings['color_custom'];

@@ -12,80 +12,49 @@ dependencies:
     - field_group
 third_party_settings:
   field_group:
-    group_block:
-      children:
-        - info
-        - field_bt_blq_desc
-        - field_bt_blq_title
-      parent_name: ''
-      weight: 0
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: false
-      label: Block
-      region: content
     group_content:
       children:
         - field_bt_content_title
         - field_bt_epigrafe
-      parent_name: ''
-      weight: 1
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: false
       label: Content
       region: content
+      parent_name: ''
+      weight: 3
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        id: ''
+        description: ''
+        required_fields: false
 id: block_content.bt_cb_section_title.default
 targetEntityType: block_content
 bundle: bt_cb_section_title
 mode: default
 content:
-  field_bt_blq_desc:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_bt_blq_title:
-    weight: 3
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_bt_content_title:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_bt_epigrafe:
+    type: string_textfield
     weight: 6
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   info:
     type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   langcode:
     type: language_select
     weight: 0
@@ -94,9 +63,11 @@ content:
       include_locked: true
     third_party_settings: {  }
   translation:
-    weight: 2
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true
   field_bt_paragraph: true

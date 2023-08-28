@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - bt_core.multifield_type.bt_accordion_item_video
+    - field.storage.multifield.field_bt_video_embed
+  module:
+    - video_embed_field
+id: multifield.bt_accordion_item_video.field_bt_video_embed
+field_name: field_bt_video_embed
+entity_type: multifield
+bundle: bt_accordion_item_video
+label: 'Video Embed'
+description: 'Enter the Youtube or Vimeo video URL.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    vimeo: vimeo
+    youtube: youtube
+    youtube_playlist: '0'
+field_type: video_embed_field

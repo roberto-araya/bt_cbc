@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - bt_core.multifield_type.bt_accordion_item_image
+    - field.storage.multifield.field_bt_text
+  module:
+    - text
+id: multifield.bt_accordion_item_image.field_bt_text
+field_name: field_bt_text
+entity_type: multifield
+bundle: bt_accordion_item_image
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

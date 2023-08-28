@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bt_embedded_video
+label: 'Embedded video'
+revision: 0
+description: 'Add an embedded video from Youtube or Vimeo.'

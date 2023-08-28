@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_accordion
+    - bt_core.multifield_type.bt_accordion_item
+    - bt_core.multifield_type.bt_accordion_item_image
+    - bt_core.multifield_type.bt_accordion_item_video
+    - field.storage.block_content.field_bt_accordion_items
+id: block_content.bt_cb_accordion.field_bt_accordion_items
+field_name: field_bt_accordion_items
+entity_type: block_content
+bundle: bt_cb_accordion
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:multifield'
+  handler_settings:
+    target_bundles:
+      bt_accordion_item: bt_accordion_item
+      bt_accordion_item_image: bt_accordion_item_image
+      bt_accordion_item_video: bt_accordion_item_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: bt_accordion_item
+field_type: entity_reference

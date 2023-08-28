@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - bt_core.multifield_type.bt_faq_item_video
+    - field.field.multifield.bt_faq_item_video.field_bt_text
+    - field.field.multifield.bt_faq_item_video.field_bt_title
+    - field.field.multifield.bt_faq_item_video.field_bt_video_embed
+  module:
+    - text
+    - video_embed_field
+id: multifield.bt_faq_item_video.default
+targetEntityType: multifield
+bundle: bt_faq_item_video
+mode: default
+content:
+  field_bt_text:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_video_embed:
+    type: video_embed_field_textfield
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  description: true
+  status: true
+  uid: true

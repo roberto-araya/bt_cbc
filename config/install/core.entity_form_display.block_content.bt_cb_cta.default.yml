@@ -37,42 +37,11 @@ third_party_settings:
         id: ''
         description: ''
         required_fields: false
-    group_block:
-      children:
-        - info
-        - field_bt_blq_desc
-        - field_bt_blq_title
-      label: Block
-      region: content
-      parent_name: ''
-      weight: 1
-      format_type: fieldset
-      format_settings:
-        classes: ''
-        id: ''
-        description: ''
-        required_fields: false
 id: block_content.bt_cb_cta.default
 targetEntityType: block_content
 bundle: bt_cb_cta
 mode: default
 content:
-  field_bt_blq_desc:
-    type: string_textfield
-    weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_bt_blq_title:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_bt_button_icon:
     type: svg_icon_widget
     weight: 15
@@ -146,4 +115,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true

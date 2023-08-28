@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - bt_core.multifield_type.bt_accordion_item_image
+    - field.storage.multifield.field_bt_image
+    - media.type.bt_image
+id: multifield.bt_accordion_item_image.field_bt_image
+field_name: field_bt_image
+entity_type: multifield
+bundle: bt_accordion_item_image
+label: Image
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      bt_image: bt_image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

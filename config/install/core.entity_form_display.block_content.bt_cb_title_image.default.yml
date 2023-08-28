@@ -13,22 +13,6 @@ dependencies:
     - media_library
 third_party_settings:
   field_group:
-    group_blo:
-      children:
-        - info
-        - field_bt_blq_title
-        - field_bt_blq_desc
-      label: 'Block Info'
-      region: content
-      parent_name: ''
-      weight: 1
-      format_type: fieldset
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        description: ''
-        required_fields: true
     group_content:
       children:
         - field_bt_content_title
@@ -37,7 +21,7 @@ third_party_settings:
       label: Contenido
       region: content
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: fieldset
       format_settings:
         classes: ''
@@ -50,22 +34,6 @@ targetEntityType: block_content
 bundle: bt_cb_title_image
 mode: default
 content:
-  field_bt_blq_desc:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_bt_blq_title:
-    type: string_textfield
-    weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_bt_content_title:
     type: string_textfield
     weight: 6
@@ -104,4 +72,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true

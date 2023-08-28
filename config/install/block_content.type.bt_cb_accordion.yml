@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bt_cb_accordion
+label: 'Accordion'
+revision: 0
+description: 'Add elements in accordion.'

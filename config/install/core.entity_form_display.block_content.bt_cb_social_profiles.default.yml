@@ -20,21 +20,6 @@ dependencies:
     - svg_icon
 third_party_settings:
   field_group:
-    group_block:
-      children:
-        - info
-        - field_bt_blq_desc
-        - field_bt_blq_title
-      label: Bloque
-      region: content
-      parent_name: ''
-      weight: 1
-      format_type: fieldset
-      format_settings:
-        classes: ''
-        id: ''
-        description: ''
-        required_fields: false
     group_redes_sociales:
       children:
         - field_bt_link_facebook
@@ -48,7 +33,7 @@ third_party_settings:
       label: 'Redes Sociales'
       region: content
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: fieldset
       format_settings:
         classes: ''
@@ -60,22 +45,6 @@ targetEntityType: block_content
 bundle: bt_cb_social_profiles
 mode: default
 content:
-  field_bt_blq_desc:
-    type: string_textfield
-    weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_bt_blq_title:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_bt_facebook_icon:
     type: svg_icon_widget
     weight: 5
@@ -156,10 +125,11 @@ content:
       include_locked: true
     third_party_settings: {  }
   translation:
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_bt_blq_desc: true
+  field_bt_blq_title: true
   field_bt_link_google_plus: true
-

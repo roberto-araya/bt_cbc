@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_faq
+    - bt_core.multifield_type.bt_faq_item
+    - bt_core.multifield_type.bt_faq_item_image
+    - bt_core.multifield_type.bt_faq_item_video
+    - field.storage.block_content.field_bt_questions
+id: block_content.bt_cb_faq.field_bt_questions
+field_name: field_bt_questions
+entity_type: block_content
+bundle: bt_cb_faq
+label: Questions
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:multifield'
+  handler_settings:
+    target_bundles:
+      bt_faq_item: bt_faq_item
+      bt_faq_item_image: bt_faq_item_image
+      bt_faq_item_video: bt_faq_item_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: bt_faq_item
+field_type: entity_reference

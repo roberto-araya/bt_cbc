@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bt_testimonial_slide
+label: 'Testimonial Slide'
+revision: 0
+description: 'Slide of testimonials.'

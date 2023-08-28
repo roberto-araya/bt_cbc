@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bt_cb_testimonial
+    - block_content.type.bt_testimonial_slide
+    - field.storage.block_content.field_bt_testimonials
+id: block_content.bt_testimonial_slide.field_bt_testimonials
+field_name: field_bt_testimonials
+entity_type: block_content
+bundle: bt_testimonial_slide
+label: Testimonials
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      bt_cb_testimonial: bt_cb_testimonial
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

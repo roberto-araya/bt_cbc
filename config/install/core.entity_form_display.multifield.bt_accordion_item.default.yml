@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - bt_core.multifield_type.bt_accordion_item
+    - field.field.multifield.bt_accordion_item.field_bt_text
+    - field.field.multifield.bt_accordion_item.field_bt_title
+  module:
+    - text
+id: multifield.bt_accordion_item.default
+targetEntityType: multifield
+bundle: bt_accordion_item
+mode: default
+content:
+  field_bt_text:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_bt_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  description: true
+  status: true
+  uid: true

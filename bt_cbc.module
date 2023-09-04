@@ -39,6 +39,7 @@ include 'inc/blocks/text_fields_block.inc';
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\bt_cbc\EntitySections;
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -501,6 +502,10 @@ function bt_cbc_block_style_layout_builder_add_styles(&$variables, $region_name,
         /** @var \Drupal\layout_builder\Field\LayoutSectionItemList $layout */
         $layout = $entity->get('layout_builder__layout');
         $sections = $layout->getSections();
+        if (!$sections) {
+          $entitySections = new EntitySections();
+          $sections = $entitySections->getSections($entity);
+        }
       }
     }
   }

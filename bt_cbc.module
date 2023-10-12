@@ -601,6 +601,11 @@ function bt_cbc_preprocess_block(&$variables) {
       }
     }
 
+    // Custom Class.
+    if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'custom_classes')) {
+      $variables['configuration']['block_style']['custom_classes'] = $settings;
+    }
+
     $block_type = $block->getPluginId();
     if (str_contains($block_type, 'block_content')) {
       $block_entity = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', substr($block->getPluginId(), 14));

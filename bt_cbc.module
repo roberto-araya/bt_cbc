@@ -604,6 +604,7 @@ function bt_cbc_preprocess_block(&$variables) {
     // Custom Class.
     if ($block && $settings = $block->getThirdPartySetting('bt_cbc', 'custom_classes')) {
       $variables['configuration']['block_style']['custom_classes'] = $settings;
+      $variables['attributes']['class'][] = $settings;
     }
 
     $block_type = $block->getPluginId();
